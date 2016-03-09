@@ -1,0 +1,20 @@
+{
+	"menu": {
+		"text_1": {
+			"english": "Play",
+			"portuguese": "Jogar"
+		}
+	},
+
+	"level_1": {
+		"text_1": {
+			"english": "Hello world!",
+			"portuguese": "Olá mundo!"
+		},
+
+		"text_2": {
+			"english": "blabla",
+			"portuguese": "blablabla"
+		}
+	}
+}
