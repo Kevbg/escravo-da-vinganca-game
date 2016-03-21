@@ -2,11 +2,10 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
+    public const float DefaultSpeed = 30;
     public float moveSpeed;
 
-    private const float DefaultSpeed = 30;
     private static float xAxis;
-
     private Vector2 newPosition;
     private bool isGrounded;
 

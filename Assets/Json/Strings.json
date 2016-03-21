@@ -1,0 +1,65 @@
+{
+	"menu": {
+    "playButton": {
+      "english": "Play",
+      "portuguese": "Jogar"
+    },
+
+    "optionsButton": {
+      "english": "Options",
+      "portuguese": "Opções"
+    },
+
+    "exitButton": {
+      "english": "Exit",
+      "portuguese": "Sair"
+    },
+
+    "audioButton": {
+      "english": "Audio",
+      "portuguese": "Áudio"
+    },
+
+    "languagesButton": {
+      "english": "Languages",
+      "portuguese": "Línguas"
+    },
+
+    "backButton": {
+      "english": "Back",
+      "portuguese": "Voltar"
+    },
+
+    "englishLangButton": {
+      "english": "English",
+      "portuguese": "Inglês"
+    },
+
+    "portugueseLangButton": {
+      "english": "Portuguese",
+      "portuguese": "Português"
+    },
+
+    "musicSlider": {
+      "english": "Music",
+      "portuguese": "Música"
+    },
+
+    "sfxSlider": {
+      "english": "SFX",
+      "portuguese": "SFX"
+    }
+	},
+
+	"level_1": {
+		"text_1": {
+			"english": "Hello world!",
+			"portuguese": "Olá mundo!"
+		},
+
+		"text_2": {
+			"english": "blabla",
+			"portuguese": "blablabla"
+		}
+	}
+}
