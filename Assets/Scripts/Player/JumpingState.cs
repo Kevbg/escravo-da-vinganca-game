@@ -1,38 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RunningState : IState {
+public class JumpingState : IState {
 	Entities owner;
 
 	float xAxis;
 
-	public RunningState (Entities owner){
+	public JumpingState (Entities owner) {
 		this.Start (owner);
 	}
 
 	// Use this for initialization
 	public void Start (Entities owner) {
 		this.owner = owner;
-		Debug.Log ("Running");
+		owner.GetComponent<Rigidbody2D>().AddForce(owner.transform.up * 900);
+		Debug.Log ("Jumping...");
 	}
 	
 	// Update is called once per frame
 	public void Update () {
 		xAxis = Input.GetAxisRaw ("Horizontal");
+		move ();
 
-		if (xAxis == 0) {
-			owner.currentState = new IdleState (owner);
-		}
-
-		if (Input.GetKeyDown(KeyCode.Space)) {
-			owner.currentState = new JumpingState (owner);
-		}
-
-		if (!owner.isGrounded) {
+		if (owner.GetComponent<Rigidbody2D> ().velocity.y <= 0) {
 			owner.currentState = new FallingState (owner);
 		}
-
-		move ();
 	}
 
 	void move(float speed = 30) {

@@ -1,37 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RunningState : IState {
+public class FallingState : IState {
 	Entities owner;
 
 	float xAxis;
 
-	public RunningState (Entities owner){
+	public FallingState (Entities owner) {
 		this.Start (owner);
 	}
 
 	// Use this for initialization
 	public void Start (Entities owner) {
 		this.owner = owner;
-		Debug.Log ("Running");
+		Debug.Log ("Falling...");
 	}
 	
 	// Update is called once per frame
 	public void Update () {
-		xAxis = Input.GetAxisRaw ("Horizontal");
-
-		if (xAxis == 0) {
+		if (owner.isGrounded) {
 			owner.currentState = new IdleState (owner);
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space)) {
-			owner.currentState = new JumpingState (owner);
-		}
-
-		if (!owner.isGrounded) {
-			owner.currentState = new FallingState (owner);
-		}
-
+		xAxis = Input.GetAxisRaw ("Horizontal");
 		move ();
 	}
 

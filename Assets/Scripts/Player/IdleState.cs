@@ -1,40 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IdleState : IPlayerState {
+public class IdleState : IState {
+	Entities owner;
 
-	private readonly StatePlayer player;
-
-	public IdleState (StatePlayer player) {
-		this.player = player;
+	public IdleState(Entities owner) {
+		this.Start (owner);
 	}
 
-	#region IPlayerState implementation
-
-	public void updateState ()
-	{
-		throw new System.NotImplementedException ();
+	// Use this for initialization
+	public void Start (Entities owner) {
+		this.owner = owner;
+		Debug.Log ("Idle");
 	}
+	
+	// Update is called once per frame
+	public void Update () {
+		if (Input.GetAxisRaw ("Horizontal") != 0) {
+			owner.currentState = new RunningState (owner);
+		}
 
-	public void onTriggerEnter (Collider other)
-	{
-		throw new System.NotImplementedException ();
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			owner.currentState = new JumpingState (owner);
+		}
+
+		if (!owner.isGrounded) {
+			owner.currentState = new FallingState (owner);
+		}
+
 	}
-
-	public void toIdleState ()
-	{
-		Debug.Log ("Can't change to same state");
-	}
-
-	public void toRunnigState ()
-	{
-		player.currentState = player.runningState;
-	}
-
-	public void toJumpState ()
-	{
-		player.currentState = player.jumpState;
-	}
-
-	#endregion
 }
