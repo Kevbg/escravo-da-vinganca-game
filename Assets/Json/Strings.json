@@ -1,65 +1,160 @@
 {
 	"menu": {
-    "playButton": {
+    "playButtonText": {
       "english": "Play",
       "portuguese": "Jogar"
     },
 
-    "optionsButton": {
+    "optionsButtonText": {
       "english": "Options",
       "portuguese": "Opções"
     },
 
-    "exitButton": {
+    "exitButtonText": {
       "english": "Exit",
       "portuguese": "Sair"
     },
 
-    "audioButton": {
+    "exitConfirmationText": {
+      "english": "Exit to desktop?",
+      "portuguese":  "Sair para a àrea de trabalho?"
+    },
+
+    "confirmExitButtonText": {
+      "english": "Exit",
+      "portuguese": "Sair"
+    },
+
+    "cancelButtonText": {
+      "english": "Cancel",
+      "portuguese":  "Cancelar"
+    },
+
+    "audioButtonText": {
       "english": "Audio",
       "portuguese": "Áudio"
     },
 
-    "languagesButton": {
+    "languagesButtonText": {
       "english": "Languages",
-      "portuguese": "Línguas"
+      "portuguese": "Idiomas"
     },
 
-    "backButton": {
+    "backButtonText": {
       "english": "Back",
       "portuguese": "Voltar"
     },
 
-    "englishLangButton": {
+    "englishLangButtonText": {
       "english": "English",
       "portuguese": "Inglês"
     },
 
-    "portugueseLangButton": {
+    "portugueseLangButtonText": {
       "english": "Portuguese",
       "portuguese": "Português"
     },
 
-    "musicSlider": {
+    "musicSliderText": {
       "english": "Music",
       "portuguese": "Música"
     },
 
-    "sfxSlider": {
+    "sfxSliderText": {
       "english": "SFX",
       "portuguese": "SFX"
+    },
+
+    "BackgroundText": {
+      "english": "Background Image",
+      "portuguese":  "Imagem de Fundo"
     }
 	},
 
-	"level_1": {
-		"text_1": {
-			"english": "Hello world!",
-			"portuguese": "Olá mundo!"
-		},
+	"cena1": {
+    "pausedText": {
+      "english": "Paused",
+      "portuguese":  "Pausa"
+    },
 
-		"text_2": {
-			"english": "blabla",
-			"portuguese": "blablabla"
-		}
+    "resumeButtonText": {
+      "english": "Resume (ESC)",
+      "portuguese": "Retomar (ESC)"
+    },
+
+    "optionsButtonText": {
+      "english": "Options",
+      "portuguese": "Opções"
+    },
+
+    "restartButtonText": {
+      "english": "Restart Level",
+      "portuguese":  "Reiniciar fase"
+    },
+
+    "mainMenuButtonText": {
+      "english": "Main Menu",
+      "portuguese": "Menu Principal"
+    },
+
+    "exitConfirmationText": {
+      "english": "Exit to main menu?",
+      "portuguese": "Sair para o menu principal?"
+    },
+
+    "restartConfirmationText": {
+      "english": "Restart the level?",
+      "portuguese":  "Reiniciar a fase?"
+    },
+
+    "confirmExitButtonText": {
+      "english": "Exit",
+      "portuguese": "Sair"
+    },
+
+    "confirmRestartButtonText": {
+      "english": "Restart",
+      "portuguese":  "Reiniciar"
+    },
+
+    "cancelButtonText": {
+      "english": "Cancel",
+      "portuguese":  "Cancelar"
+    },
+
+    "audioButtonText": {
+      "english": "Audio",
+      "portuguese": "Áudio"
+    },
+
+    "languagesButtonText": {
+      "english": "Languages",
+      "portuguese": "Idiomas"
+    },
+
+    "backButtonText": {
+      "english": "Back",
+      "portuguese": "Voltar"
+    },
+
+    "englishLangButtonText": {
+      "english": "English",
+      "portuguese": "Inglês"
+    },
+
+    "portugueseLangButtonText": {
+      "english": "Portuguese",
+      "portuguese": "Português"
+    },
+
+    "musicSliderText": {
+      "english": "Music",
+      "portuguese": "Música"
+    },
+
+    "sfxSliderText": {
+      "english": "SFX",
+      "portuguese": "SFX"
+    }
 	}
 }

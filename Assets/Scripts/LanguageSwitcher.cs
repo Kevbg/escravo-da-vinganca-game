@@ -4,46 +4,39 @@ using UnityEngine.UI;
 
 public class LanguageSwitcher : MonoBehaviour {
     private static string currentLanguage;
-    private Component[] buttons;
-    private Component[] sliders;
+    private string currentScene;
+    private Component[] texts;
 
     public enum Languages {
         english,
         portuguese
     }
 
-    public enum Scenes {
-        menu,
-        level_1
-    }
-
     void Start() {
-        // Tenta carregar a língua salva no arquivo de preferências
-        // Se não for possível, inglês será setado como default
+        // Carrega o idioma salvo no arquivo de preferências
         try {
             SetLanguage(GameControl.language);
         } catch (System.ArgumentException) {
             SetLanguage(Languages.english);
             throw;
         }
+
+        currentScene = GameControl.current.scene.name;
     }
 
     public static string GetLanguage() {
         return currentLanguage;
     }
 
-    // Define a língua que será utilizada e atualiza o texto
-    // O evento On Click() do inspector não aceita enums como parâmetro, 
-    // Portanto este método não é reconhecido
+    // Define o idioma que será utilizado e atualiza o texto; Não funciona no inspector
     public void SetLanguage(Languages language) {
         currentLanguage = language.ToString();
         GameControl.language = language.ToString();
         SetText();
     }
 
-    // Este método é reconhecido pelo On Click(), porém como o parâmetro é uma string
-    // É preciso verificar se ela é válida (corresponde a um elemento no enum)
     public void SetLanguage(string language) {
+        // É preciso verificar se a string é válida (corresponde a um elemento no enum)
         if (System.Enum.IsDefined(typeof(Languages), language)) {
             currentLanguage = language;
             GameControl.language = language;
@@ -53,24 +46,19 @@ public class LanguageSwitcher : MonoBehaviour {
         }
     }
 
-    // Percorre os filhos do gameObject e atribui o texto apropriado à eles
-    // Aqui devem estar todos os elementos da interface com uma string que será traduzida
-    // Importante: O nome dos elementos no editor deve ser o mesmo que está no arquivo "strings" 
+    // Percorre os filhos deste gameObject e atribui o texto apropriado à eles
+    // Importante: Todos os elementos "Text" que são filhos do obj com este script
+    // Devem estar presentes no arquivo "Strings.json" com o mesmo nome que está no editor
     public void SetText() {
-        buttons = gameObject.GetComponentsInChildren<Button>();
-        sliders = gameObject.GetComponentsInChildren<Slider>();
+        currentScene = GameControl.current.scene.name;
+        texts = gameObject.GetComponentsInChildren<Text>();
 
-        foreach(Button btn in buttons) {
-            btn.GetComponentInChildren<Text>().text = FetchString(Scenes.menu, btn.name);
-        }
-
-        foreach(Slider slider in sliders) {
-            slider.GetComponentInChildren<Text>().text = FetchString(Scenes.menu, slider.name);
+        foreach(Text txt in texts) {
+            txt.text = FetchString(currentScene, txt.name);
         }
     }
 
-    // Recebe os dados do parser e transforma em string
-    string FetchString(Scenes scene, string item) {
-        return GetComponent<JsonParser>().GetData(scene.ToString(), item, currentLanguage).ToString();
+    string FetchString(string scene, string item) {
+        return GetComponent<JsonParser>().GetData(scene, item, currentLanguage).ToString();
     }
 }

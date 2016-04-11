@@ -1,16 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.SceneManagement;
 using System;
+using System.Collections;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class GameControl : MonoBehaviour {
     public static GameControl current;
-
     private string saveFilePath;
+    public Scene scene { get; private set; }
+
+    public enum Scenes {
+        menu,
+        cena1
+    }
 
     // Variáveis globais (preferências)
     public static string language;
+    public static float sfxVolume;
+    public static float musicVolume;
 
     void Awake() {
          // Permite que haja um único current GC
@@ -18,6 +26,7 @@ public class GameControl : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
             current = this;
 
+            scene = SceneManager.GetActiveScene();
             saveFilePath = Application.persistentDataPath + "/Preferences.dat";
             current.Load();
         } else if (current != this){
@@ -29,6 +38,10 @@ public class GameControl : MonoBehaviour {
         current.Save();
     }
 
+    void OnLevelWasLoaded() {
+        scene = SceneManager.GetActiveScene();
+    }
+
     public void Save() {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(saveFilePath);
@@ -36,6 +49,8 @@ public class GameControl : MonoBehaviour {
 
         // Passa as variáveis para a classe que será serializada
         prefs.language = language;
+        prefs.sfxVolume = sfxVolume;
+        prefs.musicVolume = musicVolume;
 
         bf.Serialize(file, prefs);
         file.Close();
@@ -50,6 +65,8 @@ public class GameControl : MonoBehaviour {
 
             // Recebe as variáveis da classe desserializada
             language = prefs.language;
+            sfxVolume = prefs.sfxVolume;
+            musicVolume = prefs.musicVolume;
         } else {
             throw new FileNotFoundException("Could not load prefs file", saveFilePath);
         }
@@ -60,4 +77,6 @@ public class GameControl : MonoBehaviour {
 [Serializable]
 class Preferences {
     internal string language;
+    internal float sfxVolume;
+    internal float musicVolume;
 }
