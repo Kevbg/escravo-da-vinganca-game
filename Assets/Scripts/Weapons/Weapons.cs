@@ -2,45 +2,57 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Weapons: MonoBehaviour {
-	public List<IWeapon> weapons;
-	public IWeapon activeWeapon;
+public class Weapons : MonoBehaviour {
+	public GameObject bullet;
 
-	public int weaponIndex;
+	protected Transform spawWeapon;
 
-	public void Start() {
-		weapons = new List<IWeapon> ();
-		weapons.Add (new Pistol (gameObject, 5));
-		weapons.Add (new MachineGun (gameObject, 1));
-		weapons.Add (new LaserGun (gameObject, 0.5f));
-		weaponIndex = 0;
+	protected float fireRate;
+	protected float lastFire;
+	protected float reloadTime;
+	protected float lastReload;
+	protected int magazine;
+	protected int maxMagazine;
+	protected int ammo;
+	protected int maxAmmo;
 
-		changeWeapon (0);
+	protected float direction;
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
 	}
 
-	public void Update() {
-		if (Input.GetKeyDown(KeyCode.W)) {
-			activeWeapon.shoot();
-		}
-		if (Input.GetKeyDown(KeyCode.Q)) {
-			changeWeapon(-1);
-		}
-		if (Input.GetKeyDown (KeyCode.E)) {
-			changeWeapon (1);
-		}
+	public virtual void shoot() {
+		
 	}
 
-	protected void changeWeapon(int change) {
-		if (weaponIndex + change > weapons.Count - 1) {
-			weaponIndex = 0;
-		} else if (weaponIndex + change < 0) {
-			weaponIndex = weapons.Count - 1;
+	public virtual void reload() {
+		if (ammo > 0) {
+			Debug.Log ("reloading...");
+			lastReload = Time.time;
+			if (ammo > maxMagazine) {
+				ammo -= (maxMagazine - magazine);
+				magazine = maxMagazine;
+			} else {
+				magazine = ammo;
+				ammo = 0;
+			}
 		} else {
-			weaponIndex += change;
+			Debug.Log ("Without ammo...");
 		}
-
-		activeWeapon = weapons [weaponIndex];
-		this.GetComponent<SpriteRenderer> ().color = activeWeapon.onSelectedWeapon();
 	}
 
+	public virtual void selectWeapon() {
+
+	}
+
+	public void SetDirection(float direction) {
+		this.direction = direction;
+	}
 }

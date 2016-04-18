@@ -2,19 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Entities : MonoBehaviour {
-	public GameObject weapon;
+public abstract class Entities : MonoBehaviour {
+	public GameObject weaponsController;
+	public Transform spawWeapon;
+
 	public IState currentState;
 
 	public bool isGrounded;
 
 	// Use this for initialization
-	void Start () {
-	
+	public virtual void onStart () {
+		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void onUpdate () {
+		currentState.Update ();
+	}
+
+	public virtual void move (float speed = 30) {
 	
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.IO;
 using LitJson;
+using System;
 
 public class JsonParser : MonoBehaviour {
     private string strings;
@@ -23,4 +24,8 @@ public class JsonParser : MonoBehaviour {
     public JsonData GetData(string scene, string item, string language) {
         return data[scene][item][language];
     }
+
+	public void onGui() {
+		GUI.Label (new Rect (10, 10, 200, 200), stringsFilePath);
+	}
 }

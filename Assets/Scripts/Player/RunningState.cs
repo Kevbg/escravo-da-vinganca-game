@@ -24,7 +24,7 @@ public class RunningState : IState {
 			owner.currentState = new IdleState (owner);
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetAxisRaw("Jump") > 0) {
 			owner.currentState = new JumpingState (owner);
 		}
 
@@ -32,11 +32,6 @@ public class RunningState : IState {
 			owner.currentState = new FallingState (owner);
 		}
 
-		move ();
-	}
-
-	void move(float speed = 30) {
-		Vector2 newPosition = new Vector2(owner.transform.position.x + xAxis, owner.transform.position.y);
-		owner.transform.position = Vector2.Lerp(owner.transform.position, newPosition, Time.deltaTime * speed);
+		owner.move ();
 	}
 }

@@ -20,7 +20,7 @@ public class IdleState : IState {
 			owner.currentState = new RunningState (owner);
 		}
 
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetAxisRaw("Jump") > 0) {
 			owner.currentState = new JumpingState (owner);
 		}
 

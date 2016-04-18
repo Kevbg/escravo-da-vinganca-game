@@ -23,7 +23,7 @@ public class FallingState : IState {
 		}
 
 		xAxis = Input.GetAxisRaw ("Horizontal");
-		move ();
+		owner.move ();
 	}
 
 	void move(float speed = 30) {
