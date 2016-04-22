@@ -9,7 +9,7 @@ public class JsonParser : MonoBehaviour {
     private string stringsFilePath;
     private JsonData data;
 
-	void Start () {
+	void Awake () {
         // Verificar se o arquivo está no local correto após build
         // Roda no editor, mas parece que não é copiado para a pasta do executável
         stringsFilePath = Application.dataPath + "/Json/Strings.json";

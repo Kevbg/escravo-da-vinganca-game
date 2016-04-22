@@ -15,13 +15,14 @@ public class MenuController : MonoBehaviour {
     public float fadeDuration;
 
 	void Start () {
-        canvas = GameObject.FindGameObjectWithTag("Canvas");
+        canvas = GameObject.FindGameObjectWithTag("MenuCanvas");
         menuPanel = GameObject.FindGameObjectWithTag("MenuPanel");
         sf = GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>();
         menus = menuPanel.GetComponentsInChildren<RectMask2D>(true);
         // GetComponentsInChildren<> retorna objetos inativos com o parâmetro (true)
 
         pauseMenu = menus[0];
+        canvas.GetComponent<LanguageSwitcher>().SetMenuText();
     }
 
     void Update() {
@@ -71,7 +72,7 @@ public class MenuController : MonoBehaviour {
         menu.gameObject.SetActive(true);
 
         // É preciso setar o texto dos elementos do menu que será habilitado
-        canvas.GetComponent<LanguageSwitcher>().SetText();
+        canvas.GetComponent<LanguageSwitcher>().SetMenuText();
 
         // Controla as barras de volume (se existirem no menu) pela sua pos na hierarquia
         foreach (Slider slider in menu.GetComponentsInChildren<Slider>()) {
