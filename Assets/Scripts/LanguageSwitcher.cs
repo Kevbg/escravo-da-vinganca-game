@@ -50,17 +50,17 @@ public class LanguageSwitcher : MonoBehaviour {
     // Importante: Todos os elementos "Text" que são filhos do obj com este script
     // Devem estar presentes no arquivo "Strings.json" com o mesmo nome que está no editor
     public void SetText() {
-<<<<<<< Updated upstream
-        currentScene = GameControl.current.scene.name;
-        texts = gameObject.GetComponentsInChildren<Text>();
-=======
-        buttons = gameObject.GetComponentsInChildren<Button>();
-        sliders = gameObject.GetComponentsInChildren<Slider>();
-
-        foreach(Button btn in buttons) {
-			btn.GetComponentInChildren<Text>().text = FetchString(Scenes.menu, btn.name);
-        }
->>>>>>> Stashed changes
+//<<<<<<< Updated upstream
+//        currentScene = GameControl.current.scene.name;
+//        texts = gameObject.GetComponentsInChildren<Text>();
+//=======
+//        buttons = gameObject.GetComponentsInChildren<Button>();
+//        sliders = gameObject.GetComponentsInChildren<Slider>();
+//
+//        foreach(Button btn in buttons) {
+//			btn.GetComponentInChildren<Text>().text = FetchString(Scenes.menu, btn.name);
+//        }
+//>>>>>>> Stashed changes
 
         foreach(Text txt in texts) {
             txt.text = FetchString(currentScene, txt.name);
