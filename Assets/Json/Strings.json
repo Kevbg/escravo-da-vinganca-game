@@ -71,10 +71,45 @@
     }
 	},
 
-	"cena1": {
+  "cena1": {
+    "dialogueText": {
+      "english": "Sample text",
+      "portuguese": "Texto de amostra"
+    },
+
+    "Joaqs0": {
+      "english": "Joaqs Dialogue 0",
+      "portuguese": "Diálogo Joaqs 0"
+    },
+
+    "Joaqs1": {
+      "english": "Joaqs Dialogue 1",
+      "portuguese": "Diálogo Joaqs 1"
+    },
+
+    "Joaqs2": {
+      "english": "Joaqs Dialogue 2",
+      "portuguese": "Diálogo Joaqs 2"
+    },
+
+    "Capataz0": {
+      "english": "Capataz Dialogue 0",
+      "portuguese": "Diálogo Capataz 0"
+    },
+
+    "Capataz1": {
+      "english": "Capataz Dialogue 1",
+      "portuguese": "Diálogo Capataz 1"
+    },
+
+    "Capataz2": {
+      "english": "Capataz Dialogue 2",
+      "portuguese": "Diálogo Capataz 2"
+    },
+
     "pausedText": {
       "english": "Paused",
-      "portuguese":  "Pausa"
+      "portuguese": "Pausa"
     },
 
     "resumeButtonText": {
@@ -89,7 +124,7 @@
 
     "restartButtonText": {
       "english": "Restart Level",
-      "portuguese":  "Reiniciar fase"
+      "portuguese": "Reiniciar fase"
     },
 
     "mainMenuButtonText": {
@@ -104,7 +139,7 @@
 
     "restartConfirmationText": {
       "english": "Restart the level?",
-      "portuguese":  "Reiniciar a fase?"
+      "portuguese": "Reiniciar a fase?"
     },
 
     "confirmExitButtonText": {
@@ -114,12 +149,12 @@
 
     "confirmRestartButtonText": {
       "english": "Restart",
-      "portuguese":  "Reiniciar"
+      "portuguese": "Reiniciar"
     },
 
     "cancelButtonText": {
       "english": "Cancel",
-      "portuguese":  "Cancelar"
+      "portuguese": "Cancelar"
     },
 
     "audioButtonText": {
@@ -156,5 +191,5 @@
       "english": "SFX",
       "portuguese": "SFX"
     }
-	}
+  }
 }
