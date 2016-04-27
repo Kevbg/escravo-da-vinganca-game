@@ -19,16 +19,16 @@ public class Player : Entities {
 		base.onUpdate ();
 
 		if (Input.GetAxisRaw("Fire1") > 0) {
-			weaponsController.GetComponent<WeaponsController> ().shoot ();
+			this.GetComponent<Shoot> ().shoot ();
 		}
 		if (Input.GetAxisRaw("Reload1") > 0) {
-			weaponsController.GetComponent<WeaponsController> ().reload ();
+			this.GetComponent<Shoot> ().reload ();
 		}
 		if (Input.GetKeyDown(KeyCode.Q)) {
-			weaponsController.GetComponent<WeaponsController> ().changeWeapon (-1);
+			this.GetComponent<Shoot> ().changeWeapon (-1);
 		}
 		if (Input.GetKeyDown (KeyCode.E)) {
-			weaponsController.GetComponent<WeaponsController> ().changeWeapon (1);
+			this.GetComponent<Shoot> ().changeWeapon (1);
 		}
 
 		xAxis = Input.GetAxisRaw ("Horizontal");

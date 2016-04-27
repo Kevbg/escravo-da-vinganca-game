@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class Bullet : MonoBehaviour {
-	private string notTarget;
-
 	private IMovement movementType;
 	private float maxLifeTime;
 	private float lifeTime;
@@ -28,10 +26,6 @@ public class Bullet : MonoBehaviour {
 		}
 	}
 
-	public void SetNotTarget(string notTarget) {
-		this.notTarget = notTarget;
-	}
-
 	public void SetMovement(IMovement movementType) {
 		this.movementType = movementType;
 	}
@@ -45,8 +39,6 @@ public class Bullet : MonoBehaviour {
 	}
 		
 	public void OnCollisionEnter2D(Collision2D collision) {
-		if (!(collision.gameObject.name == notTarget)) {
-			Destroy (gameObject);
-		}
+		Destroy (gameObject);
 	}
 }

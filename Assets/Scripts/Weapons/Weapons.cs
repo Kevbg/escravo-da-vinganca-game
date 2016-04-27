@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Weapons : MonoBehaviour {
-	public GameObject bullet;
-
-	protected Transform spawWeapon;
+	[SerializeField]protected GameObject bullet;
 
 	protected float fireRate;
 	protected float lastFire;
@@ -49,7 +47,7 @@ public class Weapons : MonoBehaviour {
 	}
 
 	public virtual void selectWeapon() {
-
+		this.GetComponent<SpriteRenderer> ().enabled = true;
 	}
 
 	public void SetDirection(float direction) {

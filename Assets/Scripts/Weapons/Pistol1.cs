@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Pistol : Weapons {
+public class Pistol1 : Weapons {
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +14,7 @@ public class Pistol : Weapons {
 		ammo = 100;
 		maxAmmo = 100;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (this.transform.parent.parent.localEulerAngles.y > 0) {
@@ -26,6 +26,7 @@ public class Pistol : Weapons {
 
 	public override void shoot() {
 		base.shoot ();
+		//		Debug.LogWarning (this.transform.parent.transform.parent.name);
 		if (magazine > 0 && Time.time > fireRate + lastFire && Time.time > reloadTime + lastReload) {
 			lastFire = Time.time;
 			magazine -= 1;
@@ -38,7 +39,7 @@ public class Pistol : Weapons {
 		} else if (magazine == 0) {
 			this.reload ();
 		} else {
-			
+
 		}
 	}
 

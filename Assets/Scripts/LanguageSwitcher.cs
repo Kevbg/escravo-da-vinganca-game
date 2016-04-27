@@ -43,23 +43,23 @@ public class LanguageSwitcher : MonoBehaviour {
         }
     }
 
-<<<<<<< HEAD
-    // Percorre os filhos deste gameObject e atribui o texto apropriado à eles
-    // Importante: Todos os elementos "Text" que são filhos do obj com este script
-    // Devem estar presentes no arquivo "Strings.json" com o mesmo nome que está no editor
-    public void SetText() {
-//<<<<<<< Updated upstream
-//        currentScene = GameControl.current.scene.name;
-//        texts = gameObject.GetComponentsInChildren<Text>();
+//<<<<<<< HEAD
+//    // Percorre os filhos deste gameObject e atribui o texto apropriado à eles
+//    // Importante: Todos os elementos "Text" que são filhos do obj com este script
+//    // Devem estar presentes no arquivo "Strings.json" com o mesmo nome que está no editor
+//    public void SetText() {
+////<<<<<<< Updated upstream
+////        currentScene = GameControl.current.scene.name;
+////        texts = gameObject.GetComponentsInChildren<Text>();
+////=======
+////        buttons = gameObject.GetComponentsInChildren<Button>();
+////        sliders = gameObject.GetComponentsInChildren<Slider>();
+////
+////        foreach(Button btn in buttons) {
+////			btn.GetComponentInChildren<Text>().text = FetchString(Scenes.menu, btn.name);
+////        }
+////>>>>>>> Stashed changes
 //=======
-//        buttons = gameObject.GetComponentsInChildren<Button>();
-//        sliders = gameObject.GetComponentsInChildren<Slider>();
-//
-//        foreach(Button btn in buttons) {
-//			btn.GetComponentInChildren<Text>().text = FetchString(Scenes.menu, btn.name);
-//        }
-//>>>>>>> Stashed changes
-=======
     // Importante: A key(item) usada para pegar o texto de cada elemento é igual ao nome do Game Object
     // Portanto, deve estar no arquivo "Strings.json" com o mesmo nome que está no editor
     public void SetMenuText() {
@@ -70,7 +70,7 @@ public class LanguageSwitcher : MonoBehaviour {
             txt.text = FetchString(txt.name);
         }
     }
->>>>>>> origin/master
+//>>>>>>> origin/master
 
     public void SetDialogueText() {
         currentScene = GameControl.current.scene.name;

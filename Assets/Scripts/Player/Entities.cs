@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public abstract class Entities : MonoBehaviour {
-	public GameObject weaponsController;
 	public Transform spawWeapon;
 
 	public IState currentState;
