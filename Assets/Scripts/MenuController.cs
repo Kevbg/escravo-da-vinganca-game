@@ -29,8 +29,10 @@ public class MenuController : MonoBehaviour {
         // Verificão de pausa/retomada
         if (Input.GetKeyDown(KeyCode.Escape) && IsActive(pauseMenu) && gamePaused) {
             Resume();
+            DisableMenu(pauseMenu);
         } else if (Input.GetKeyDown(KeyCode.Escape) && !SceneLoader.isLoading && !gamePaused) {
             Pause();
+            EnableMenu(pauseMenu);
         }
     }
 
@@ -40,7 +42,6 @@ public class MenuController : MonoBehaviour {
             Time.timeScale = 0;
             gamePaused = true;
             FadeOut();
-            EnableMenu(pauseMenu);
         }
     }
 
@@ -49,7 +50,6 @@ public class MenuController : MonoBehaviour {
         Time.timeScale = 1;
         gamePaused = false;
         FadeIn();
-        DisableMenu(pauseMenu);
     }
 
     public void FadeOut() {

@@ -190,6 +190,11 @@
     "sfxSliderText": {
       "english": "SFX",
       "portuguese": "SFX"
+    },
+
+    "gameOverText": {
+      "english": "Game Over",
+      "portuguese":  "Game Over"
     }
   }
 }
