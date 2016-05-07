@@ -9,6 +9,8 @@ public abstract class Entities : MonoBehaviour {
 
 	public bool isGrounded;
 
+	public float health;
+
 	// Use this for initialization
 	public virtual void onStart () {
 		
@@ -21,5 +23,17 @@ public abstract class Entities : MonoBehaviour {
 
 	public virtual void move (float speed = 30) {
 	
+	}
+
+	public virtual void noHealth() {
+		
+	}
+
+	public virtual int getDirection() {
+		if (this.transform.localScale.x > 0) {
+			return 1;
+		} else {
+			return -1;
+		}
 	}
 }

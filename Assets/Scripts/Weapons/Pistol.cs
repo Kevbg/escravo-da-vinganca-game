@@ -17,29 +17,23 @@ public class Pistol : Weapons {
 	
 	// Update is called once per frame
 	void Update () {
-		if (this.transform.parent.parent.localEulerAngles.y > 0) {
-			direction = -1;
-		} else {
-			direction = 1;
-		}
+		
 	}
 
 	public override void shoot() {
-		base.shoot ();
 		if (magazine > 0 && Time.time > fireRate + lastFire && Time.time > reloadTime + lastReload) {
-			lastFire = Time.time;
-			magazine -= 1;
-
-			GameObject newBullet = Instantiate (bullet, this.transform.position, Quaternion.identity) as GameObject;
+			base.shoot ();
 			newBullet.GetComponent<Bullet> ().SetMovement (new LinearMovement ());
-			newBullet.GetComponent<Bullet> ().SetDirection (direction);
-			newBullet.GetComponent<Bullet> ().IgnoreCollision (this.transform.parent.transform.parent.GetComponent<Collider2D> ());
-
+			newBullet.GetComponent<Bullet> ().SetDemage (3);
 		} else if (magazine == 0) {
 			this.reload ();
 		} else {
-			
+
 		}
+	}
+
+	public override void reload() {
+		base.reload ();
 	}
 
 	public override void selectWeapon() {

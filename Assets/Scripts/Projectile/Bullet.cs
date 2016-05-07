@@ -5,6 +5,8 @@ public class Bullet : MonoBehaviour {
 	private IMovement movementType;
 	private float maxLifeTime;
 	private float lifeTime;
+	private string ownertag;
+	private int demage = 1;
 
 	private float direction;
 
@@ -34,11 +36,18 @@ public class Bullet : MonoBehaviour {
 		this.direction = direction;
 	}
 
-	public void IgnoreCollision (Collider2D ownerCollider) {
-		Physics2D.IgnoreCollision (GetComponent<Collider2D>(), ownerCollider);
+	public void SetOwnertag (string tag) {
+		this.ownertag = tag;
+	}
+
+	public void SetDemage (int demage) {
+		this.demage = demage;
 	}
 		
-	public void OnCollisionEnter2D(Collision2D collision) {
-		Destroy (gameObject);
+	public void OnTriggerEnter2D (Collider2D collider) {
+		if (!collider.isTrigger && !collider.gameObject.CompareTag(ownertag)) {
+			Destroy (gameObject);
+			collider.GetComponentInParent<Health> ().takeDemage (this.demage);
+		}
 	}
 }

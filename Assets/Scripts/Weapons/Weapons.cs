@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Weapons : MonoBehaviour {
 	[SerializeField]protected GameObject bullet;
+	protected GameObject newBullet;
 
 	protected float fireRate;
 	protected float lastFire;
@@ -14,8 +15,6 @@ public class Weapons : MonoBehaviour {
 	protected int ammo;
 	protected int maxAmmo;
 
-	protected float direction;
-
 	// Use this for initialization
 	void Start () {
 		
@@ -23,11 +22,15 @@ public class Weapons : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
 	public virtual void shoot() {
-		
+		lastFire = Time.time;
+		magazine -= 1;
+
+		newBullet = Instantiate (bullet, this.transform.position, Quaternion.identity) as GameObject;
+		newBullet.GetComponent<Bullet>().SetOwnertag(this.GetComponentInParent<Entities>().tag);
+		newBullet.GetComponent<Bullet> ().SetDirection ((float) this.GetComponentInParent<Entities> ().getDirection ());
 	}
 
 	public virtual void reload() {
@@ -48,9 +51,5 @@ public class Weapons : MonoBehaviour {
 
 	public virtual void selectWeapon() {
 		this.GetComponent<SpriteRenderer> ().enabled = true;
-	}
-
-	public void SetDirection(float direction) {
-		this.direction = direction;
 	}
 }

@@ -5,11 +5,13 @@ public class BGScroller : MonoBehaviour {
     public static BGScroller current;
     public float scrollSpeed;
 
+	public GameObject player;
+
     private float BGpos;
 
     public void Scroll () {
         // Verifica se o player está indo para a direta
-        if (Player.getDirection() > 0) {
+		if (player.GetComponent<Entities>().getDirection() > 0) {
             BGpos += scrollSpeed;
 
             if (BGpos > 1.0f) {
@@ -20,7 +22,7 @@ public class BGScroller : MonoBehaviour {
 
         }
         // Verifica se o player está indo para a esquerda
-        else if (Player.getDirection() < 0) { 
+		else if (player.GetComponent<Entities>().getDirection() < 0) { 
             BGpos -= scrollSpeed;
 
             if (BGpos < 1.0f) {

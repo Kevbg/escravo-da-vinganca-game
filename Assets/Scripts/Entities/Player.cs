@@ -4,19 +4,21 @@ using System.Collections.Generic;
 
 public class Player : Entities {
 	public float moveSpeed;
-
+	public float vely;
 	public const float DefaultSpeed = 30;
 	private static float xAxis;
 
 	void Start () {
 		base.onStart ();
 		moveSpeed = DefaultSpeed;
+		health = 5;
 
 		currentState = new IdleState (this);
 	}
 
 	void Update () {
 		base.onUpdate ();
+		vely = GetComponent<Rigidbody2D> ().velocity.y;
 
 		if (Input.GetAxisRaw("Fire1") > 0) {
 			this.GetComponent<Shoot> ().shoot ();
@@ -32,25 +34,25 @@ public class Player : Entities {
 		}
 
 		xAxis = Input.GetAxisRaw ("Horizontal");
-		if (getDirection () > 0) {
-			transform.localRotation = Quaternion.Euler (0, 0, 0);
-		} else if (getDirection () < 0) {
-			transform.localRotation = Quaternion.Euler (0, 180, 0);
+		if (xAxis > 0 && this.transform.localScale.x < 0) {
+			Vector3 scale = this.transform.localScale;
+			scale.x *= -1;
+			this.transform.localScale = scale;
+		} else if (xAxis < 0 && this.transform.localScale.x > 0) {
+			Vector3 scale = this.transform.localScale;
+			scale.x *= -1;
+			this.transform.localScale = scale;
 		}
 	}
 
-	public static float getDirection () {
-		return xAxis;
-	}
-
-	void OnCollisionEnter2D (Collision2D col) {
-		if (col.gameObject.name == "Ground") {
+	void OnCollisionStay2D (Collision2D col) {
+		if (col.gameObject.tag == "Ground") {
 			isGrounded = true;
 		}
 	}
 
 	void OnCollisionExit2D (Collision2D col) {
-		if (col.gameObject.name == "Ground") {
+		if (col.gameObject.tag == "Ground") {
 			isGrounded = false;
 		}
 	}
