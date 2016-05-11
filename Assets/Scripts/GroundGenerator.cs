@@ -23,9 +23,9 @@ public class GroundGenerator : MonoBehaviour {
     }
     
 	void Update () {
-        if (!HasBeenGenerated() && Player.getDirection() > 0) {
+        if (!HasBeenGenerated() && Input.GetAxisRaw("Horizontal") > 0) {
             GenerateGround(currentGround().transform.position.x + groundWidth);
-        } else if (!HasBeenGenerated() && Player.getDirection() < 0) {
+        } else if (!HasBeenGenerated() && Input.GetAxisRaw("Horizontal") < 0) {
             GenerateGround(currentGround().transform.position.x - groundWidth);
         }
     }
