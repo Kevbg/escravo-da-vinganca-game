@@ -1,7 +1,10 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class CharacterDialogue : MonoBehaviour {
     public characters character;
@@ -30,6 +33,7 @@ public class CharacterDialogue : MonoBehaviour {
     }
 }
 
+#if UNITY_EDITOR
 // Botões para debug (inspector)
 [CustomEditor(typeof(CharacterDialogue))]
 public class CharacterDialogEditor : Editor {
@@ -46,3 +50,4 @@ public class CharacterDialogEditor : Editor {
         }
     }
 }
+#endif

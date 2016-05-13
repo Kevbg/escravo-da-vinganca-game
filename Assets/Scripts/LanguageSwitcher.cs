@@ -72,13 +72,13 @@ public class LanguageSwitcher : MonoBehaviour {
     }
 //>>>>>>> origin/master
 
-    public void SetDialogueText() {
-        currentScene = GameControl.current.scene.name;
-        Component[] texts = GetComponentsInChildren<Text>();
-        foreach(Text txt in texts) {
-            txt.text = FetchString(txt.GetComponentInParent<CharacterDialogue>().currentDialogueKey);
-        }
-    }
+    //public void SetDialogueText() {
+    //    currentScene = GameControl.current.scene.name;
+    //    Component[] texts = GetComponentsInChildren<Text>();
+    //    foreach(Text txt in texts) {
+    //        txt.text = FetchString(txt.GetComponentInParent<CharacterDialogue>().currentDialogueKey);
+    //    }
+    //}
 
     public string FetchString(string item) {
         JsonParser parser = GameObject.FindGameObjectWithTag("GameController")

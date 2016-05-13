@@ -1,7 +1,10 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class DialogPanelScript : MonoBehaviour {
     public const float DefaultLerpSpeed = 7.5f;
@@ -111,6 +114,7 @@ public class DialogPanelScript : MonoBehaviour {
     }
 }
 
+#if UNITY_EDITOR
 // Botões para debug (inspector)
 [CustomEditor(typeof(DialogPanelScript))]
 public class DialogScriptEditor : Editor {
@@ -127,3 +131,4 @@ public class DialogScriptEditor : Editor {
         }
     }
 }
+#endif
