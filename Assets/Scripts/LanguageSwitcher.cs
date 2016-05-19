@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class LanguageSwitcher : MonoBehaviour {
     private static string currentLanguage;
-    private string currentScene;
 
     public enum Languages {
         english,
@@ -19,8 +18,6 @@ public class LanguageSwitcher : MonoBehaviour {
             SetLanguage(Languages.english);
             throw;
         }
-
-        currentScene = GameControl.current.scene.name;
     }
 
     public static string GetLanguage() {
@@ -43,46 +40,46 @@ public class LanguageSwitcher : MonoBehaviour {
         }
     }
 
-//<<<<<<< HEAD
-//    // Percorre os filhos deste gameObject e atribui o texto apropriado à eles
-//    // Importante: Todos os elementos "Text" que são filhos do obj com este script
-//    // Devem estar presentes no arquivo "Strings.json" com o mesmo nome que está no editor
-//    public void SetText() {
-////<<<<<<< Updated upstream
-////        currentScene = GameControl.current.scene.name;
-////        texts = gameObject.GetComponentsInChildren<Text>();
-////=======
-////        buttons = gameObject.GetComponentsInChildren<Button>();
-////        sliders = gameObject.GetComponentsInChildren<Slider>();
-////
-////        foreach(Button btn in buttons) {
-////			btn.GetComponentInChildren<Text>().text = FetchString(Scenes.menu, btn.name);
-////        }
-////>>>>>>> Stashed changes
-//=======
     // Importante: A key(item) usada para pegar o texto de cada elemento é igual ao nome do Game Object
     // Portanto, deve estar no arquivo "Strings.json" com o mesmo nome que está no editor
     public void SetMenuText() {
-        currentScene = GameControl.current.scene.name;
         Component[] texts = GetComponentsInChildren<Text>();
 
         foreach(Text txt in texts) {
-            txt.text = FetchString(txt.name);
+            txt.text = FetchItem(txt.name);
         }
     }
-//>>>>>>> origin/master
 
-    //public void SetDialogueText() {
-    //    currentScene = GameControl.current.scene.name;
-    //    Component[] texts = GetComponentsInChildren<Text>();
-    //    foreach(Text txt in texts) {
-    //        txt.text = FetchString(txt.GetComponentInParent<CharacterDialogue>().currentDialogueKey);
-    //    }
-    //}
+    public void SetDialogueText() {
+        Component[] texts = GetComponentsInChildren<Text>();
+        foreach (Text txt in texts) {
+            if (txt.tag == "Dialogue") {
+                txt.text = FetchDialogue(txt.GetComponentInParent<CharacterDialogue>().currentDialogueIndex);
+            } else if (txt.tag == "NamePlate") {
+                string charName;
+                FetchDialogue(txt.GetComponentInParent<CharacterDialogue>().currentDialogueIndex, out charName);
+                txt.text = charName;
+            } else {
+                txt.text = txt.text = FetchItem(txt.name);
+            }
+        }
+    }
 
-    public string FetchString(string item) {
+    public string FetchItem(string item) {
         JsonParser parser = GameObject.FindGameObjectWithTag("GameController")
                             .GetComponent<JsonParser>();
-        return parser.GetData(currentScene, item, currentLanguage).ToString();
+        return parser.GetItem(item, currentLanguage).ToString();
+    }
+
+    public string FetchDialogue(int index) {
+        JsonParser parser = GameObject.FindGameObjectWithTag("GameController")
+                            .GetComponent<JsonParser>();
+        return parser.GetDialogue(index, currentLanguage).ToString();
+    }
+
+    public string FetchDialogue(int index, out string character) {
+        JsonParser parser = GameObject.FindGameObjectWithTag("GameController")
+                            .GetComponent<JsonParser>();
+        return parser.GetDialogue(index, currentLanguage, out character).ToString();
     }
 }

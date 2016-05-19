@@ -1,0 +1,274 @@
+{
+  "playButtonText": {
+    "english": "Play",
+    "portuguese": "Jogar"
+  },
+
+  "optionsButtonText": {
+    "english": "Options",
+    "portuguese": "Opções"
+  },
+
+  "exitButtonText": {
+    "english": "Exit",
+    "portuguese": "Sair"
+  },
+
+  "exitConfirmationText": {
+    "english": "Exit to desktop?",
+    "portuguese": "Sair para a àrea de trabalho?"
+  },
+
+  "confirmExitButtonText": {
+    "english": "Exit",
+    "portuguese": "Sair"
+  },
+
+  "cancelButtonText": {
+    "english": "Cancel",
+    "portuguese": "Cancelar"
+  },
+
+  "audioButtonText": {
+    "english": "Audio",
+    "portuguese": "Áudio"
+  },
+
+  "languagesButtonText": {
+    "english": "Languages",
+    "portuguese": "Idiomas"
+  },
+
+  "backButtonText": {
+    "english": "Back",
+    "portuguese": "Voltar"
+  },
+
+  "englishLangButtonText": {
+    "english": "English",
+    "portuguese": "Inglês"
+  },
+
+  "portugueseLangButtonText": {
+    "english": "Portuguese",
+    "portuguese": "Português"
+  },
+
+  "musicSliderText": {
+    "english": "Music",
+    "portuguese": "Música"
+  },
+
+  "sfxSliderText": {
+    "english": "SFX",
+    "portuguese": "SFX"
+  },
+
+  "dialogueText": {
+    "english": "Sample text",
+    "portuguese": "Texto de amostra"
+  },
+
+  "pausedText": {
+    "english": "Paused",
+    "portuguese": "Pausa"
+  },
+
+  "resumeButtonText": {
+    "english": "Resume (ESC)",
+    "portuguese": "Retomar (ESC)"
+  },
+
+  "restartButtonText": {
+    "english": "Restart Level",
+    "portuguese": "Reiniciar fase"
+  },
+
+  "mainMenuButtonText": {
+    "english": "Main Menu",
+    "portuguese": "Menu Principal"
+  },
+
+  "restartConfirmationText": {
+    "english": "Restart the level?",
+    "portuguese": "Reiniciar a fase?"
+  },
+
+  "confirmRestartButtonText": {
+    "english": "Restart",
+    "portuguese": "Reiniciar"
+  },
+
+  "exitMenuConfirmationText": {
+    "english": "Exit to main menu?",
+    "portuguese": "Sair para o menu principal?"
+  },
+
+  "gameOverText": {
+    "english": "Game Over",
+    "portuguese": "Game Over"
+  },
+
+  "dialogContinueText": {
+    "english": "Press SPACE to continue",
+    "portuguese": "Aperte ESPAÇO para continuar"
+  },
+
+  "characterName": {
+    "english": "Character Name",
+    "portuguese": "Nome do personagem"
+  },
+
+  "Dialogue": {
+
+    "Poste0": {
+      "english": "...",
+      "portuguese": "...",
+      "character":  "Joaqs"
+    },
+
+    "Poste1": {
+      "english": "27 years...",
+      "portuguese": "27 anos...",
+      "character":  "Joaqs"
+    },
+
+    "Poste2": {
+      "english": "27 years as a slave, all I've ever known in my life was serfdom.",
+      "portuguese": "27 anos como escravo, tudo o que conheci em minha vida foi a servidão.",
+      "character":  "Joaqs"
+    },
+
+    "Poste3": {
+      "english": "All I've ever done in my life was to serve others, afraid of lashings... but now...",
+      "portuguese": "Tudo o que fiz em minha vida foi a vontade dos outros, com medo de ser chicoteado... mas agora...",
+      "character":  "Joaqs"
+    },
+
+    "Poste4": {
+      "english": "Now what happens after they caught me trying to run away? More lashings? More punishment?",
+      "portuguese": "Agora que me pegaram tentando fugir o que acontece? Mais chicotadas? Mais punições?",
+      "character":  "Joaqs"
+    },
+
+    "Poste5": {
+      "english": "No... I refuse being tortured for trying to live a better life away from this place.",
+      "portuguese": "Não... Me recuso a ser torturado por tentar ter uma vida melhor longe daqui.",
+      "character": "Joaqs"
+    },
+
+    "Poste6": {
+      "english": "My suffering will end... And it will end today!",
+      "portuguese": "O meu sofrimento acaba... E ele acaba hoje!",
+      "character": "Joaqs"
+    },
+
+    "Mansao0": {
+      "english": "I see you don't know where your place is, slave.",
+      "portuguese": "Vejo que você não sabe onde é o seu lugar, escravo.",
+      "character": "Capataz"
+    },
+
+    "Mansao1": {
+      "english": "I always thought that my place was at the table among you and other people you claim to... “own”.",
+      "portuguese": "Eu sempre achei que meu lugar era sentado na mesa junto de você e as outras pessoas que você alega ter... “posse”.",
+      "character": "Joaqs"
+    },
+
+    "Mansao2": {
+      "english": "But today, while crossing the farm, I found out I was wrong.",
+      "portuguese": "Mas hoje, ao cruzar a fazenda eu descobri que estava errado.",
+      "character": "Joaqs"
+    },
+
+    "Mansao3": {
+      "english": "My place is not at your table, because you are not human beings, you are animals...",
+      "portuguese": "Meu lugar não é na mesa de vocês, porque vocês não são seres humanos, são animais...",
+      "character": "Joaqs"
+    },
+
+    "Mansao4": {
+      "english": "No, you are all WORSE than animals.",
+      "portuguese": "Não, vocês são PIORES do que animais.",
+      "character": "Joaqs"
+    },
+
+    "Mansao5": {
+      "english": "You accuse us of being inferior. I hope that one day someone with green colored skin comes along and treats you as such.",
+      "portuguese": "Vocês nos acusam de serem inferiores. Espero que um dia venha alguém verde para tratá­los como tal.",
+      "character": "Joaqs"
+    },
+
+    "Mansao6": {
+      "english": "It's awful to think that people can treat their fellow men so poorly only because of their skin color.",
+      "portuguese": "É horrível pensar que pessoas tratam de forma tão inescrupulosa seus semelhantes apenas pela coloração de sua pele.",
+      "character": "Joaqs"
+    },
+
+    "Mansao7": {
+      "english": "I may be tortured today, but tomorrow my descendants will be born free, and there will be no more slavery.",
+      "portuguese": "Hoje eu posso ser torturado, mas amanhã meus descendentes vão nascer em liberdade, e não haverá mais escravidão.",
+      "character": "Joaqs"
+    },
+
+    "Mansao8": {
+      "english": "I hope you had a good dinner tonight, 'cause it's gonna be your last.",
+      "portuguese": "Espero que tenha tido um bom jantar hoje, porque será seu último.",
+      "character": "Joaqs"
+    },
+
+    "Mansao9": {
+      "english": "Are you done? You're even crazier than I thought...",
+      "portuguese": "Terminou? Vejo que você é mais louco do que eu imaginava...",
+      "character": "Capataz"
+    },
+
+    "Mansao10": {
+      "english": "You think killing me will grant you back all those years you've spent as a slave?",
+      "portuguese": "Você acha que me matar lhe trará de volta todos esses anos que passou como escravo?",
+      "character": "Capataz"
+    },
+
+    "Mansao11": {
+      "english": "You're wrong. You're just trading one kind of slavery for another. The desire for vengeance.",
+      "portuguese": "Você se engana. Está apenas trocando uma escravidão por outra. O desejo de vingança.",
+      "character": "Capataz"
+    },
+
+    "Mansao12": {
+      "english": "And that's a lot worse than you can imagine, for even if you could kill me, you wouldn't be satisfied.",
+      "portuguese": "E essa é muito pior do que você pode imaginar, pois mesmo que você conseguisse me matar, você não se dará por satisfeito.",
+      "character": "Capataz"
+    },
+
+    "Mansao13": {
+      "english": "But that doesn't matter. Some more lashings will put you back in your place...",
+      "portuguese": "Mas não importa, algumas chicotadas vão te colocar no seu devido lugar...",
+      "character": "Capataz"
+    },
+
+    "Mansao14": {
+      "english": "On second thought, I'll change your place. From the slave quarters to six feet under!",
+      "portuguese": "Pensando bem, vou mudar o seu lugar. Da senzala para 7 palmos abaixo da terra!",
+      "character": "Capataz"
+    },
+
+    "MansaoFim0": {
+      "english": "He was right... The bastard was right even about the things he said of me.",
+      "portuguese": "Ele estava certo... Até nisso o desgraçado foi capaz de acertar sobre minha vida.",
+      "character": "Joaqs"
+    },
+
+    "MansaoFim1": {
+      "english": "But what's done is done.",
+      "portuguese": "Mas o que está feito, está feito.",
+      "character": "Joaqs"
+    },
+
+    "MansaoFim2": {
+      "english": "I may not be satisfied with him gone, but it doesn't change the fact that I'm finally free...",
+      "portuguese": "Posso não ter ficado satisfeito com a morte dele, mas isso não muda o fato de que estou finalmente em liberdade...",
+      "character":  "Joaqs"
+    }
+  }
+}

@@ -2,17 +2,15 @@
 using System.Collections;
 
 public class DestroyOnInvisible : MonoBehaviour {
-
-	void Start () {
-	    
-	}
-	
-	void Update () {
-    	
-	}
+    private GroundGenerator groundGen;
+    void Start() {
+        groundGen = GameObject.FindGameObjectWithTag("GroundGenerator").GetComponent<GroundGenerator>();
+    }
 
     void OnBecameInvisible() {
-        print("Destroying " + transform.parent.name);
-        Destroy(transform.parent.gameObject);
+        GameObject parent = transform.parent.gameObject;
+        print("Destroying " + parent.name);
+        Destroy(parent);
+        groundGen.RemoveFromList(parent);
     }
 }

@@ -8,7 +8,7 @@ public class BGScroller : MonoBehaviour {
     private float BGpos;
 
     void Start() {
-        GetComponent<Renderer>().material.renderQueue += order;
+        GetComponent<Renderer>().material.renderQueue = order;
     }
 
     void Update() {

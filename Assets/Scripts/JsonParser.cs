@@ -10,9 +10,7 @@ public class JsonParser : MonoBehaviour {
     private JsonData data;
 
 	void Awake () {
-        // Verificar se o arquivo está no local correto após build
-        // Roda no editor, mas parece que não é copiado para a pasta do executável
-        stringsFilePath = Application.dataPath + "/Json/Strings.json";
+        stringsFilePath = Application.dataPath + "/StreamingAssets/Json/Strings.json";
         Parse(stringsFilePath);
     }
 
@@ -21,11 +19,16 @@ public class JsonParser : MonoBehaviour {
         data = JsonMapper.ToObject(strings);
     }
 
-    public JsonData GetData(string scene, string item, string language) {
-        return data[scene][item][language];
+    public JsonData GetItem(string item, string language) {
+        return data[item][language];
     }
 
-	public void onGui() {
-		GUI.Label (new Rect (10, 10, 200, 200), stringsFilePath);
-	}
+    public JsonData GetDialogue(int index, string language) {
+        return data["Dialogue"][index][language];
+    }
+
+    public JsonData GetDialogue(int index, string language, out string character) {
+        character = data["Dialogue"][index]["character"].ToString();
+        return data["Dialogue"][index][language];
+    }
 }

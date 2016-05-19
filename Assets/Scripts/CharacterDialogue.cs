@@ -7,10 +7,14 @@ using UnityEditor;
 #endif
 
 public class CharacterDialogue : MonoBehaviour {
-    public characters character;
+    public int startingLine;
+    public int numOfLines;
+    public int nextScene;
     public int currentDialogueIndex { get; private set; }
-    public string currentDialogueKey { get; private set; }
     private LanguageSwitcher ls;
+    private SceneLoader sceneLoader;
+    private Sprite joaqsHead;
+    private Sprite capatazHead;
 
     public enum characters {
         Joaqs,
@@ -19,17 +23,52 @@ public class CharacterDialogue : MonoBehaviour {
 
 	void Start () {
         ls = GetComponentInParent<LanguageSwitcher>();
-        SetDialogue(0);
-	}
+        sceneLoader = GameObject.FindGameObjectWithTag("MenuPanel").GetComponent<SceneLoader>();
+        joaqsHead = Resources.Load<Sprite>("Sprites/Cabeça Joaqs");
+        capatazHead = Resources.Load<Sprite>("Sprites/Cabeça Capataz");
 
-    public string GetDialogue(int index) {
+        SetDialogue(startingLine);
+        ls.SetDialogueText();
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.Space) && !MenuController.gamePaused) {
+            if (currentDialogueIndex + 1 < numOfLines + startingLine) {
+                SetDialogue(currentDialogueIndex + 1);
+            } else {
+                print("Loading next scene...");
+                sceneLoader.BeginLoading(nextScene);
+            }
+        }
+    }
+
+    public void SetPortrait(Sprite newPortrait) {
+        Image portrait = GameObject.FindGameObjectWithTag("Portrait").GetComponent<Image>();
+        portrait.sprite = newPortrait;
+    }
+
+    public void SetCharacterName(string name) {
+        Text namePlate = GameObject.FindGameObjectWithTag("NamePlate").GetComponent<Text>();
+        namePlate.text = name;
+    }
+
+    public string GetDialogue(int index, out string charName) {
         currentDialogueIndex = index;
-        currentDialogueKey = character.ToString() + index.ToString();
-        return ls.FetchString(currentDialogueKey);
+        return ls.FetchDialogue(currentDialogueIndex, out charName);
     }
 
     public void SetDialogue(int index) {
-        GetComponentInChildren<Text>().text = GetDialogue(index);
+        string charName;
+        Text dialogue = GameObject.FindGameObjectWithTag("Dialogue").GetComponent<Text>();
+        dialogue.text = GetDialogue(index, out charName);
+
+        if (charName == characters.Joaqs.ToString()) {
+            SetPortrait(joaqsHead);
+            SetCharacterName(charName);
+        } else if (charName == characters.Capataz.ToString()) {
+            SetPortrait(capatazHead);
+            SetCharacterName(charName);
+        }
     }
 }
 
@@ -46,7 +85,7 @@ public class CharacterDialogEditor : Editor {
         }
 
         if (GUILayout.Button("Reset Dialogue")) {
-            cd.SetDialogue(0);
+            cd.SetDialogue(cd.startingLine);
         }
     }
 }

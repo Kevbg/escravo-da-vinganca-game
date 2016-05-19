@@ -4,29 +4,23 @@ using System.Linq;
 
 public class GroundGenerator : MonoBehaviour {
     public float maxDistance;
-    private float edgeDistanceThreshold;
-    private GameObject player;
     private List<GameObject> grounds;
+    private GameObject player;
+    private float edgeDistanceThreshold;
     private float groundWidth;
-    private float leftEdgeX;
-    private float rightEdgeX;
 
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
         grounds = GameObject.FindGameObjectsWithTag("Ground").ToList();
         groundWidth = currentGround().GetComponent<BoxCollider2D>().size.x;
         edgeDistanceThreshold = groundWidth / 2.5f;
-
-        if (maxDistance == 0) {
-            maxDistance = 500f;
-        }
     }
     
 	void Update () {
         if (!HasBeenGenerated() && Input.GetAxisRaw("Horizontal") > 0) {
-            GenerateGround("right", 2);
+            GenerateGround("right", 3);
         } else if (!HasBeenGenerated() && Input.GetAxisRaw("Horizontal") < 0) {
-            GenerateGround("left", 2);
+            GenerateGround("left", 3);
         }
     }
 
@@ -38,17 +32,17 @@ public class GroundGenerator : MonoBehaviour {
         }
     }
 
-    void GenerateGround(string direction, int ammount) {
+    void GenerateGround(string direction, int amount) {
         float posX;
 
-        if (Mathf.Abs(player.transform.position.x) < Mathf.Abs(maxDistance)) {
-            for (int i = 0; i < ammount; i++) {
+        if (player.transform.position.x < maxDistance) {
+            for (int i = 0; i < amount; i++) {
                 if (direction == "left") {
                     posX = currentGround().transform.position.x - groundWidth;
                 } else if (direction == "right") {
                     posX = currentGround().transform.position.x + groundWidth;
                 } else {
-                    Debug.Log("Invalid string: direction");
+                    Debug.Log("Invalid direction");
                     posX = 0;
                 }
 
@@ -56,28 +50,34 @@ public class GroundGenerator : MonoBehaviour {
                 GameObject newGround = (GameObject)Instantiate(currentGround(), new Vector3(posX,
                                                                currentGround().transform.position.y),
                                                                Quaternion.identity);
-                newGround.name = ("Ground " + i);
+                newGround.name = ("Ground");
                 grounds.Add(newGround);
             }
-        } else if (Mathf.Abs(player.transform.position.x) >= Mathf.Abs(maxDistance)) {
+        } else if (player.transform.position.x >= maxDistance) {
             print("maxDistance reached.");
         }
     }
 
+    public void RemoveFromList(GameObject ground) {
+        grounds.Remove(ground);
+    }
+
     bool HasBeenGenerated() {
-        float[] posX = new float[grounds.Count];
-        for (int i = 0; i < grounds.Count; i++) {
-            posX[i] = grounds[i].transform.position.x;
+        Collider2D col;
+        float xOffset;
+        float yOffset = -20f;
+
+        if (Input.GetAxisRaw("Horizontal") > 0) {
+            xOffset = edgeDistanceThreshold;
+        } else {
+            xOffset = -edgeDistanceThreshold;
         }
 
-        leftEdgeX = posX.Min() - groundWidth / 2;
-        rightEdgeX = posX.Max() + groundWidth / 2;
-
-        if (player.transform.position.x + edgeDistanceThreshold > rightEdgeX ||
-            player.transform.position.x - edgeDistanceThreshold < leftEdgeX) {
-            return false;
-        } else {
+        if (Physics2D.OverlapPoint(new Vector2(player.transform.position.x + xOffset, yOffset)) != null) {
+            col = Physics2D.OverlapPoint(new Vector2(player.transform.position.x + xOffset, yOffset));
             return true;
+        } else {
+            return false;
         }
     }
 }

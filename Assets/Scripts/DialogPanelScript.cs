@@ -29,7 +29,7 @@ public class DialogPanelScript : MonoBehaviour {
         dialogPanel = GetComponent<RectMask2D>();
 
         centerPivotOffset = new Vector3(0, charHeight);
-        bottomLeftPivotOffset = new Vector3(-charWidth /2, charHeight / 2);
+        bottomLeftPivotOffset = new Vector3(-charWidth / 2, charHeight / 2);
         bottomRightPivotOffset = new Vector3(charWidth / 2, charHeight / 2);
 
         anchorPivot(pivotAnchor);

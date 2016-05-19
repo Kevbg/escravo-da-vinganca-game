@@ -12,7 +12,11 @@ public class GameControl : MonoBehaviour {
 
     public enum Scenes {
         menu,
-        cena1
+        cena1,
+        poste,
+        mansao,
+        mansaoFim,
+        languageSelection
     }
 
     // Variáveis globais (preferências)
@@ -68,6 +72,7 @@ public class GameControl : MonoBehaviour {
             sfxVolume = prefs.sfxVolume;
             musicVolume = prefs.musicVolume;
         } else {
+            SceneManager.LoadScene(Scenes.languageSelection.ToString());
             throw new FileNotFoundException("Could not load prefs file", saveFilePath);
         }
     }
