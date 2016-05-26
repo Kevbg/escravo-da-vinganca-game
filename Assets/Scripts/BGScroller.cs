@@ -6,13 +6,20 @@ public class BGScroller : MonoBehaviour {
     public int order;
     public float scrollSpeed;
     private float BGpos;
+    private float playerX;
+    private GameObject player;
 
     void Start() {
         GetComponent<Renderer>().material.renderQueue = order;
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerX = GameObject.FindGameObjectWithTag("Player").transform.position.x;
     }
 
     void Update() {
-        Scroll();
+        if (player.transform.position.x > playerX) {
+            Scroll();
+            playerX = player.transform.position.x;
+        }
     }
 
     public void Scroll () {

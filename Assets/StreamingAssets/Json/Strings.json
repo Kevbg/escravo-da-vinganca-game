@@ -14,6 +14,31 @@
     "portuguese": "Sair"
   },
 
+  "aboutButtonText": {
+    "english": "About",
+    "portuguese": "Sobre"
+  },
+
+  "howToPlayButtonText": {
+    "english": "How to Play",
+    "portuguese": "Como Jogar"
+  },
+
+  "howToPlayText": {
+    "english": "Your goal is to defeat Capataz, and to get to him, you will need to face every enemy that crosses your path.\n\n\nControls\nPause\\Menu: ESC\nWalk: W, A, S, D\nJump: SPACE\nShoot: (Left)CTRL\nSwitch Weapons: 1, 2, 3",
+    "portuguese": "Seu objetivo é derrotar o Capataz, e para chegar até ele, terá de enfrentar todos os inimigos que cruzarem o seu caminho.\n\n\nControles\nPausa\\Menu: ESC\nAndar: W, A, S, D\nPular: ESPAÇO\nAtirar: CTRL (Esquerdo)\nTrocar de arma: 1, 2, 3"
+  },
+
+  "creditsButtonText": {
+    "english": "Credits",
+    "portuguese": "Créditos"
+  },
+
+  "creditsText": {
+    "english": "This game was developed as a Graduation Project of the Technology in Digital Games Course at Fatec São Caetano do Sul (2016/1)\n\n\nProgramming\nBruno Geroto da Silva\nKelvyn Bicudo Garcia\n\nGame Design\nLucas Claudiano Silva\n\nArt\nJessica de Castro Casali\n\nMusic\nRodrigo Claudiano Santorato\n\nAdvisors\nClaudemir Martins da Silva\nIrapuã Glória Junior\nIzar Munhoz Alvares\nMiguel Marílio Saad Junior\nRaquel Silva\nValteir Benedito Vaz",
+    "portuguese": "Este jogo foi desenvolvido como Projeto de Graduação do Curso de Tecnologia em Jogos Digitais da Fatec São Caetano do Sul (2016/1)\n\n\nProgramação\nBruno Geroto da Silva\nKelvyn Bicudo Garcia\n\nGame Design\nLucas Claudiano Silva\n\nArte\nJessica de Castro Casali\n\nMúsica\nRodrigo Claudiano Santorato\n\nOrientadores\nClaudemir Martins da Silva\nIrapuã Glória Junior\nIzar Munhoz Alvares\nMiguel Marílio Saad Junior\nRaquel Silva\nValteir Benedito Vaz"
+  },
+
   "exitConfirmationText": {
     "english": "Exit to desktop?",
     "portuguese": "Sair para a àrea de trabalho?"

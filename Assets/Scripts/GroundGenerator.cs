@@ -4,23 +4,19 @@ using System.Linq;
 
 public class GroundGenerator : MonoBehaviour {
     public float maxDistance;
+    public float groundWidth { get; private set; }
     private List<GameObject> grounds;
     private GameObject player;
-    private float edgeDistanceThreshold;
-    private float groundWidth;
 
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
         grounds = GameObject.FindGameObjectsWithTag("Ground").ToList();
         groundWidth = currentGround().GetComponent<BoxCollider2D>().size.x;
-        edgeDistanceThreshold = groundWidth / 2.5f;
     }
     
 	void Update () {
-        if (!HasBeenGenerated() && Input.GetAxisRaw("Horizontal") > 0) {
-            GenerateGround("right", 3);
-        } else if (!HasBeenGenerated() && Input.GetAxisRaw("Horizontal") < 0) {
-            GenerateGround("left", 3);
+        if (!HasBeenGenerated(groundWidth) && Input.GetAxisRaw("Horizontal") > 0) {
+            GenerateGround(3);
         }
     }
 
@@ -32,24 +28,19 @@ public class GroundGenerator : MonoBehaviour {
         }
     }
 
-    void GenerateGround(string direction, int amount) {
+    void GenerateGround(int amount) {
+        float offset = 0.01f;
         float posX;
 
         if (player.transform.position.x < maxDistance) {
             for (int i = 0; i < amount; i++) {
-                if (direction == "left") {
-                    posX = currentGround().transform.position.x - groundWidth;
-                } else if (direction == "right") {
-                    posX = currentGround().transform.position.x + groundWidth;
-                } else {
-                    Debug.Log("Invalid direction");
-                    posX = 0;
-                }
-
+                posX = currentGround().transform.position.x + groundWidth;
                 print("Generating ground...");
-                GameObject newGround = (GameObject)Instantiate(currentGround(), new Vector3(posX,
-                                                               currentGround().transform.position.y),
-                                                               Quaternion.identity);
+
+                GameObject newGround = (GameObject)Instantiate(currentGround(), 
+                    new Vector3(posX - offset, currentGround().transform.position.y), 
+                    Quaternion.identity);
+
                 newGround.name = ("Ground");
                 grounds.Add(newGround);
             }
@@ -62,19 +53,10 @@ public class GroundGenerator : MonoBehaviour {
         grounds.Remove(ground);
     }
 
-    bool HasBeenGenerated() {
-        Collider2D col;
-        float xOffset;
+    public bool HasBeenGenerated(float posX) {
         float yOffset = -20f;
 
-        if (Input.GetAxisRaw("Horizontal") > 0) {
-            xOffset = edgeDistanceThreshold;
-        } else {
-            xOffset = -edgeDistanceThreshold;
-        }
-
-        if (Physics2D.OverlapPoint(new Vector2(player.transform.position.x + xOffset, yOffset)) != null) {
-            col = Physics2D.OverlapPoint(new Vector2(player.transform.position.x + xOffset, yOffset));
+        if (Physics2D.OverlapPoint(new Vector2(player.transform.position.x + posX, yOffset)) != null) {
             return true;
         } else {
             return false;
