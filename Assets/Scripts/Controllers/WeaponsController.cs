@@ -5,6 +5,8 @@ public class WeaponsController : MonoBehaviour {
 	public static WeaponsController weaponsController;
 
 	public List<GameObject> Weapons;
+	public List<GameObject> PickupAmmoType;
+	private List<GameObject> pickupAmmo;
 
 	void Awake () {
 		if (!weaponsController) {
@@ -29,5 +31,11 @@ public class WeaponsController : MonoBehaviour {
 		GameObject newWeapon = Instantiate (Weapons [weaponType], parent.position, Quaternion.identity) as GameObject;
 		newWeapon.transform.parent = parent;
 		return newWeapon;
+	}
+
+	public void CreatePickupAmmo (int ammoType, Transform parent) {
+		Debug.LogWarning ("Ammo: " + ammoType);
+		GameObject newPickup = Instantiate (PickupAmmoType [ammoType], parent.position, Quaternion.identity) as GameObject;
+		pickupAmmo.Add (newPickup);
 	}
 }

@@ -6,6 +6,8 @@ public class Weapons : MonoBehaviour {
 	[SerializeField]protected GameObject bullet;
 	protected GameObject newBullet;
 
+	[SerializeField]protected Transform spawBullet;
+
 	protected float fireRate;
 	protected float lastFire;
 	protected float reloadTime;
@@ -28,7 +30,7 @@ public class Weapons : MonoBehaviour {
 		lastFire = Time.time;
 		magazine -= 1;
 
-		newBullet = Instantiate (bullet, this.transform.position, Quaternion.identity) as GameObject;
+		newBullet = Instantiate (bullet, this.spawBullet.position, Quaternion.identity) as GameObject;
 		newBullet.GetComponent<Bullet>().SetOwnertag(this.GetComponentInParent<Entities>().tag);
 		newBullet.GetComponent<Bullet> ().SetDirection ((float) this.GetComponentInParent<Entities> ().getDirection ());
 	}
@@ -51,5 +53,13 @@ public class Weapons : MonoBehaviour {
 
 	public virtual void selectWeapon() {
 		this.GetComponent<SpriteRenderer> ().enabled = true;
+	}
+
+	public virtual void deselectWeapon() {
+		this.GetComponent<SpriteRenderer> ().enabled = false;
+	}
+
+	public virtual void addAmmo() {
+		
 	}
 }

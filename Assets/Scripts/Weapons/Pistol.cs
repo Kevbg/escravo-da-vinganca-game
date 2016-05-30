@@ -5,14 +5,14 @@ public class Pistol : Weapons {
 
 	// Use this for initialization
 	void Start () {
-		fireRate = 0.1f;
+		fireRate = 0.2f;
 		lastFire = Time.time;
-		reloadTime = 1.0f;
+		reloadTime = 1.2f;
 		lastReload = Time.time - reloadTime;
-		magazine = 10;
-		maxMagazine = 10;
-		ammo = 100;
-		maxAmmo = 100;
+		magazine = 6;
+		maxMagazine = 6;
+		ammo = 60;
+		maxAmmo = 60;
 	}
 	
 	// Update is called once per frame
@@ -24,7 +24,7 @@ public class Pistol : Weapons {
 		if (magazine > 0 && Time.time > fireRate + lastFire && Time.time > reloadTime + lastReload) {
 			base.shoot ();
 			newBullet.GetComponent<Bullet> ().SetMovement (new LinearMovement ());
-			newBullet.GetComponent<Bullet> ().SetDemage (3);
+			newBullet.GetComponent<Bullet> ().SetDemage (2);
 		} else if (magazine == 0) {
 			this.reload ();
 		} else {
@@ -38,5 +38,14 @@ public class Pistol : Weapons {
 
 	public override void selectWeapon() {
 		base.selectWeapon ();
+	}
+
+	public override void addAmmo() {
+		base.addAmmo ();
+		if (ammo + 12 > maxAmmo) {
+			ammo = maxAmmo;
+		} else {
+			ammo += 12;
+		}
 	}
 }

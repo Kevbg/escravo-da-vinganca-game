@@ -11,7 +11,7 @@ public class Player : Entities {
 	void Start () {
 		base.onStart ();
 		moveSpeed = DefaultSpeed;
-		health = 5;
+		health = 9;
 
 		currentState = new IdleState (this);
 	}

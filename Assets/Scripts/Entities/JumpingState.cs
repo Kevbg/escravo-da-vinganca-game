@@ -13,7 +13,7 @@ public class JumpingState : IState {
 	// Use this for initialization
 	public void Start (Entities owner) {
 		this.owner = owner;
-		owner.GetComponent<Rigidbody2D>().AddForce(owner.transform.up * 900);
+		owner.GetComponent<Rigidbody2D>().AddForce(owner.transform.up * 1200);
 		Debug.Log ("Jumping...");
 	}
 	

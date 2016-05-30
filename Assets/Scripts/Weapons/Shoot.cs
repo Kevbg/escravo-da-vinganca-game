@@ -22,9 +22,7 @@ public class Shoot : MonoBehaviour {
 	}
 
 	public void changeWeapon (int change) {
-		if (activeWeapon != -1) {
-			weapons [activeWeapon].GetComponent<SpriteRenderer> ().enabled = false;
-		}
+		int previousWeapon = activeWeapon;
 
 		if (activeWeapon == -1) {
 			activeWeapon = 0;
@@ -35,7 +33,10 @@ public class Shoot : MonoBehaviour {
 		} else {
 			activeWeapon += change;
 		}
-			
+
+		if (previousWeapon != -1) {
+			weapons [previousWeapon].GetComponent<Weapons>().deselectWeapon();
+		}
 		weapons [activeWeapon].GetComponent<Weapons>().selectWeapon ();
 	}
 
@@ -53,5 +54,9 @@ public class Shoot : MonoBehaviour {
 
 	public void addWeapon (int weaponType) {
 		weapons.Add(WeaponsController.weaponsController.CreateWeapon (weaponType, this.GetComponent<Entities> ().spawWeapon.transform));
+	}
+
+	public void addAmmo (int ammoType) {
+		weapons [ammoType].GetComponent<Weapons> ().addAmmo ();
 	}
 }

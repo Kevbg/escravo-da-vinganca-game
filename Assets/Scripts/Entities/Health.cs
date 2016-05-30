@@ -15,11 +15,14 @@ public class Health : MonoBehaviour {
 
 	public void takeDemage(int demage) {
 		Entities entity = this.gameObject.GetComponent<Entities> ();
-		if (entity.health - demage <= 0) {
+		if (!entity.invulnerable) {
+			entity.health -= demage;
+			entity.invulnerable = true;
+		}
+
+		if (entity.health <= 0) {
 			entity.health = 0;
 			entity.noHealth ();
-		} else {
-			entity.health -= demage;
 		}
 	}
 }
