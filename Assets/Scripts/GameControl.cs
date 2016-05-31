@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -23,6 +23,7 @@ public class GameControl : MonoBehaviour {
     public static string language;
     public static float sfxVolume;
     public static float musicVolume;
+    public static List<KeyValuePair<string, int>> scores;
 
     void Awake() {
          // Permite que haja um único current GC
@@ -55,6 +56,7 @@ public class GameControl : MonoBehaviour {
         prefs.language = language;
         prefs.sfxVolume = sfxVolume;
         prefs.musicVolume = musicVolume;
+        prefs.scores = scores;
 
         bf.Serialize(file, prefs);
         file.Close();
@@ -71,8 +73,17 @@ public class GameControl : MonoBehaviour {
             language = prefs.language;
             sfxVolume = prefs.sfxVolume;
             musicVolume = prefs.musicVolume;
+
+            if (prefs.scores == null) {
+                scores = new List<KeyValuePair<string, int>>();
+            } else {
+                scores = prefs.scores;
+            }
         } else {
             SceneManager.LoadScene(Scenes.languageSelection.ToString());
+            sfxVolume = 0.75f;
+            musicVolume = 0.75f;
+            scores = new List<KeyValuePair<string, int>>();
             throw new FileNotFoundException("Could not load prefs file", saveFilePath);
         }
     }
@@ -84,4 +95,5 @@ class Preferences {
     internal string language;
     internal float sfxVolume;
     internal float musicVolume;
+    internal List<KeyValuePair<string, int>> scores;
 }

@@ -12,18 +12,22 @@ public class JumpingState : IState {
 
 	// Use this for initialization
 	public void Start (Entities owner) {
-		this.owner = owner;
-		owner.GetComponent<Rigidbody2D>().AddForce(owner.transform.up * 1200);
-		Debug.Log ("Jumping...");
+        if (!MenuController.gamePaused) {
+            this.owner = owner;
+            owner.GetComponent<Rigidbody2D>().AddForce(owner.transform.up * 1200);
+            Debug.Log("Jumping...");
+        }
 	}
 	
 	// Update is called once per frame
 	public void Update () {
-		xAxis = Input.GetAxisRaw ("Horizontal");
-		owner.move ();
+        if (!MenuController.gamePaused) {
+            xAxis = Input.GetAxisRaw("Horizontal");
+            owner.move();
 
-		if (owner.GetComponent<Rigidbody2D> ().velocity.y <= 0) {
-			owner.currentState = new FallingState (owner);
-		}
+            if (owner.GetComponent<Rigidbody2D>().velocity.y <= 0) {
+                owner.currentState = new FallingState(owner);
+            }
+        }
 	}
 }

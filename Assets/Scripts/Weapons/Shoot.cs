@@ -6,50 +6,46 @@ public class Shoot : MonoBehaviour {
 	[SerializeField]public List<GameObject> weapons;
 
 	protected int activeWeapon;
+    private Weapons currentWeapon;
 
-	// Use this for initialization
 	void Start () {
-		this.activeWeapon = -1;
-
-		this.addWeapon (0);
-		this.addWeapon (1);
-		this.changeWeapon (1);
-	}
+        if (tag == "Capataz") {
+            this.addWeapon(1);
+        } else if (tag == "Player"){
+            this.addWeapon(0);
+            this.addWeapon(1);
+        } else {
+            this.addWeapon(0);
+        }
+        this.changeWeapon(0);
+    }
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}
 
-	public void changeWeapon (int change) {
-		int previousWeapon = activeWeapon;
+    public Weapons CurrentWeapon() {
+        return weapons[activeWeapon].GetComponent<Weapons>();
+    }
 
-		if (activeWeapon == -1) {
-			activeWeapon = 0;
-		} else if (activeWeapon + change > weapons.Count - 1) {
-			activeWeapon = 0;
-		} else if (activeWeapon + change < 0) {
-			activeWeapon = weapons.Count - 1;
-		} else {
-			activeWeapon += change;
-		}
-
-		if (previousWeapon != -1) {
-			weapons [previousWeapon].GetComponent<Weapons>().deselectWeapon();
-		}
-		weapons [activeWeapon].GetComponent<Weapons>().selectWeapon ();
-	}
+    public void changeWeapon(int weapon) {
+        foreach(GameObject go in weapons) {
+            go.GetComponent<Weapons>().deselectWeapon();
+        }
+        activeWeapon = weapon;
+        CurrentWeapon().selectWeapon();
+    }
 
 	public void shoot () {
 		if (activeWeapon == -1) {
 			Debug.Log ("No weapons selected");
 		} else {
-			weapons [activeWeapon].GetComponent<Weapons> ().shoot ();
+            CurrentWeapon().shoot ();
 		}
 	}
 
 	public void reload () {
-		weapons [activeWeapon].GetComponent<Weapons>().reload ();
+        CurrentWeapon().reload ();
 	}
 
 	public void addWeapon (int weaponType) {

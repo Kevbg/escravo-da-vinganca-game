@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class GroundGenerator : MonoBehaviour {
+    public bool unlimited; // Ignora maxDistance
     public float maxDistance;
     public float groundWidth { get; private set; }
-    private List<GameObject> grounds;
+    public GameObject bossSceneTrigger;
     private GameObject player;
+    private List<GameObject> grounds;
+    private bool triggerSpawned;
 
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -17,6 +20,13 @@ public class GroundGenerator : MonoBehaviour {
 	void Update () {
         if (!HasBeenGenerated(groundWidth) && Input.GetAxisRaw("Horizontal") > 0) {
             GenerateGround(3);
+        }
+
+        if (player.transform.position.x >= maxDistance && !unlimited && !triggerSpawned) {
+            Instantiate(bossSceneTrigger, new Vector3(player.transform.position.x + groundWidth, 0),
+                        Quaternion.identity);
+
+            triggerSpawned = true;
         }
     }
 
@@ -32,10 +42,10 @@ public class GroundGenerator : MonoBehaviour {
         float offset = 0.01f;
         float posX;
 
-        if (player.transform.position.x < maxDistance) {
+        if (player.transform.position.x < maxDistance || unlimited) {
             for (int i = 0; i < amount; i++) {
                 posX = currentGround().transform.position.x + groundWidth;
-                print("Generating ground...");
+                print("Generating Ground...");
 
                 GameObject newGround = (GameObject)Instantiate(currentGround(), 
                     new Vector3(posX - offset, currentGround().transform.position.y), 
@@ -44,7 +54,7 @@ public class GroundGenerator : MonoBehaviour {
                 newGround.name = ("Ground");
                 grounds.Add(newGround);
             }
-        } else if (player.transform.position.x >= maxDistance) {
+        } else if (player.transform.position.x >= maxDistance && !unlimited) {
             print("maxDistance reached.");
         }
     }

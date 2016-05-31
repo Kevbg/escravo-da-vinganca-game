@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Pistol : Weapons {
 
-	// Use this for initialization
 	void Start () {
 		fireRate = 0.2f;
 		lastFire = Time.time;
@@ -11,11 +10,10 @@ public class Pistol : Weapons {
 		lastReload = Time.time - reloadTime;
 		magazine = 6;
 		maxMagazine = 6;
-		ammo = 60;
-		maxAmmo = 60;
-	}
+		ammo = 120;
+		maxAmmo = 120;
+    }
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}

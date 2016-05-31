@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MenuController : MonoBehaviour {
     private GameObject canvas;
     private ScreenFader sf;
     private RectMask2D[] menus;
-    private RectMask2D pauseMenu;
+    public RectMask2D pauseMenu { get; private set; }
+    public RectMask2D gameOverMenu { get; private set; }
     public static bool gamePaused { get; private set; }
 
     [Range(0, 255)]
@@ -21,6 +23,7 @@ public class MenuController : MonoBehaviour {
             menus = GetComponentsInChildren<RectMask2D>(true);
             // GetComponentsInChildren<> retorna objetos inativos com o parâmetro (true)
             pauseMenu = menus[0];
+            gameOverMenu = menus[menus.Length - 1];
             canvas.GetComponent<LanguageSwitcher>().SetMenuText();
         }
     }
@@ -37,8 +40,7 @@ public class MenuController : MonoBehaviour {
     }
 
     public void Pause() {
-        if (GameControl.current.scene.name != GameControl.Scenes.menu.ToString() &&
-            GameControl.current.scene.name != GameControl.Scenes.menu.ToString()) {
+        if (GameControl.current.scene.name != GameControl.Scenes.menu.ToString()) {
             Time.timeScale = 0;
             gamePaused = true;
             FadeOut();
@@ -114,5 +116,12 @@ public class MenuController : MonoBehaviour {
         foreach (Button btn in menu.GetComponentsInChildren<Button>()) {
             btn.interactable = true;
         }
+    }
+
+    public void SavePlayerScore() {
+        string name = GameObject.FindGameObjectWithTag("PlayerName").GetComponent<Text>().text;
+        int score = int.Parse(GameObject.FindGameObjectWithTag("Score").GetComponent<Text>().text);
+        GameControl.scores.Add(new KeyValuePair<string, int>(name, score));
+        GameControl.current.Save();
     }
 }

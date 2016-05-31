@@ -20,6 +20,9 @@ public class SceneLoader : MonoBehaviour {
 
     // Corotina para sincronizar o fade in/out com o carregamento da cena
     public IEnumerator LoadScene(int level) {
+        if (GameObject.FindGameObjectWithTag("BGM") != null) {
+            GameObject.FindGameObjectWithTag("BGM").GetComponent<BGMControl>().FadeOut();
+        }
         ScreenFader sf = GameObject.FindGameObjectWithTag("Fader").GetComponent<ScreenFader>();
         sf.FadeOut(fadeDuration);
         yield return new WaitForSeconds(fadeDuration);

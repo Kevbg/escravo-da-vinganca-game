@@ -4,6 +4,16 @@
     "portuguese": "Jogar"
   },
 
+  "storyModeButtonText": {
+    "english": "Story Mode",
+    "portuguese": "Modo história"
+  },
+
+  "survivalModeButtonText": {
+    "english": "Survival Mode",
+    "portuguese": "Modo de sobrevivência"
+  },
+
   "optionsButtonText": {
     "english": "Options",
     "portuguese": "Opções"
@@ -25,8 +35,18 @@
   },
 
   "howToPlayText": {
-    "english": "Your goal is to defeat Capataz, and to get to him, you will need to face every enemy that crosses your path.\n\n\nControls\nPause\\Menu: ESC\nWalk: W, A, S, D\nJump: SPACE\nShoot: (Left)CTRL\nSwitch Weapons: 1, 2, 3",
-    "portuguese": "Seu objetivo é derrotar o Capataz, e para chegar até ele, terá de enfrentar todos os inimigos que cruzarem o seu caminho.\n\n\nControles\nPausa\\Menu: ESC\nAndar: W, A, S, D\nPular: ESPAÇO\nAtirar: CTRL (Esquerdo)\nTrocar de arma: 1, 2, 3"
+    "english": "Your goal is to defeat Capataz, and to get to him, you will need to face every enemy that crosses your path.\n\n\nControls\nPause\\Menu: ESC\nWalk: W, A, S, D\nJump: SPACE\nShoot: (Left)CTRL\nSwitch Weapons: 1, 2",
+    "portuguese": "Seu objetivo é derrotar o Capataz, e para chegar até ele, terá de enfrentar todos os inimigos que cruzarem o seu caminho.\n\n\nControles\nPausa\\Menu: ESC\nAndar: W, A, S, D\nPular: ESPAÇO\nAtirar: CTRL (Esquerdo)\nTrocar de arma: 1, 2"
+  },
+
+  "highscoresButtonText": {
+    "english": "High Scores",
+    "portuguese": "Pontuações"
+  },
+
+  "deleteButtonText": {
+    "english": "Delete",
+    "portuguese": "Apagar"
   },
 
   "creditsButtonText": {
@@ -132,6 +152,26 @@
   "gameOverText": {
     "english": "Game Over",
     "portuguese": "Game Over"
+  },
+
+  "gameOverScoreText": {
+    "english": "Score: ",
+    "portuguese": "Pontuação: "
+  },
+
+  "confirmButtonText": {
+    "english": "Confirm",
+    "portuguese": "Confirmar"
+  },
+
+  "namePlaceholderText": {
+    "english": "Enter your name",
+    "portuguese": "Digite seu nome"
+  },
+
+  "playerNameText": {
+    "english": "",
+    "portuguese":  ""
   },
 
   "dialogContinueText": {

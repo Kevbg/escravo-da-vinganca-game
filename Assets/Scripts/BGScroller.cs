@@ -24,7 +24,7 @@ public class BGScroller : MonoBehaviour {
 
     public void Scroll () {
         // Verifica se o player está indo para a direta
-		if (!MenuController.gamePaused && Input.GetAxisRaw("Horizontal") > 0) {
+		if (TrackPlayerX.isTracking) {
             BGpos += scrollSpeed;
 
             if (BGpos > 1.0f) {
@@ -33,7 +33,7 @@ public class BGScroller : MonoBehaviour {
             GetComponent<Renderer>().material.mainTextureOffset = new Vector2(BGpos, 0);
         }
         // Verifica se o player está indo para a esquerda
-		else if (!MenuController.gamePaused && Input.GetAxisRaw("Horizontal") < 0) { 
+		else if (TrackPlayerX.isTracking) { 
             BGpos -= scrollSpeed;
 
             if (BGpos < 1.0f) {

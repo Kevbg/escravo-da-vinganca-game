@@ -12,16 +12,18 @@ public abstract class Entities : MonoBehaviour {
 	public float health;
 	public float invulnerableTime;
 	public bool invulnerable;
+    public bool canBeInvulnerable;
 
 	// Use this for initialization
 	public virtual void onStart () {
 		invulnerable = false;
 		invulnerableTime = 0;
+        canBeInvulnerable = true;
 	}
 	
 	// Update is called once per frame
 	public virtual void onUpdate () {
-		if (invulnerable) {
+		if (canBeInvulnerable && invulnerable) {
 			this.GetComponent<SpriteRenderer> ().enabled = !this.GetComponent<SpriteRenderer> ().enabled;
 			invulnerableTime += Time.deltaTime;
 		}

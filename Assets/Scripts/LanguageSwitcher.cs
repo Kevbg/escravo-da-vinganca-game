@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class LanguageSwitcher : MonoBehaviour {
+    const int MaxHighscores = 3;
     private static string currentLanguage;
 
     public enum Languages {
@@ -46,8 +49,17 @@ public class LanguageSwitcher : MonoBehaviour {
         Component[] texts = GetComponentsInChildren<Text>();
 
         foreach(Text txt in texts) {
-            txt.text = FetchItem(txt.name);
+            if (txt.tag == "GameOverScore") {
+                int score = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreUpdater>().currentScore;
+                txt.text = FetchItem(txt.name) + score;
+            } else if (txt.tag != "IgnoreLanguage"){
+                txt.text = FetchItem(txt.name);
+            }
         }
+    }
+
+    int Compare(KeyValuePair<string, int> a, KeyValuePair<string, int> b) {
+        return b.Value.CompareTo(a.Value);
     }
 
     public void SetDialogueText() {

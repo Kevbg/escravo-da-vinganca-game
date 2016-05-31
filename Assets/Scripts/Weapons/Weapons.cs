@@ -17,22 +17,22 @@ public class Weapons : MonoBehaviour {
 	protected int ammo;
 	protected int maxAmmo;
 
-	// Use this for initialization
 	void Start () {
 		
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	}
 
 	public virtual void shoot() {
-		lastFire = Time.time;
-		magazine -= 1;
+        if (!MenuController.gamePaused) {
+            lastFire = Time.time;
+            magazine -= 1;
 
-		newBullet = Instantiate (bullet, this.spawBullet.position, Quaternion.identity) as GameObject;
-		newBullet.GetComponent<Bullet>().SetOwnertag(this.GetComponentInParent<Entities>().tag);
-		newBullet.GetComponent<Bullet> ().SetDirection ((float) this.GetComponentInParent<Entities> ().getDirection ());
+            newBullet = Instantiate(bullet, this.spawBullet.position, Quaternion.identity) as GameObject;
+            newBullet.GetComponent<Bullet>().SetOwnertag(this.GetComponentInParent<Entities>().tag);
+            newBullet.GetComponent<Bullet>().SetDirection((float)this.GetComponentInParent<Entities>().getDirection());
+        }
 	}
 
 	public virtual void reload() {
@@ -62,4 +62,12 @@ public class Weapons : MonoBehaviour {
 	public virtual void addAmmo() {
 		
 	}
+
+    public int GetAmmo() {
+        return ammo;
+    }
+
+    public int GetMagazine() {
+        return magazine;
+    }
 }

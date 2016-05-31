@@ -17,25 +17,23 @@ public class WeaponsController : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
 	void Start () {
-	
+        pickupAmmo = new List<GameObject>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
 
 	public GameObject CreateWeapon (int weaponType, Transform parent) {
-		GameObject newWeapon = Instantiate (Weapons [weaponType], parent.position, Quaternion.identity) as GameObject;
+		GameObject newWeapon = Instantiate (Weapons [weaponType], parent.position, Quaternion.Euler(0, 0, 330)) as GameObject;
 		newWeapon.transform.parent = parent;
 		return newWeapon;
 	}
 
 	public void CreatePickupAmmo (int ammoType, Transform parent) {
 		Debug.LogWarning ("Ammo: " + ammoType);
-		GameObject newPickup = Instantiate (PickupAmmoType [ammoType], parent.position, Quaternion.identity) as GameObject;
+		GameObject newPickup = Instantiate (PickupAmmoType [ammoType], new Vector3(parent.position.x, -12), Quaternion.identity) as GameObject;
 		pickupAmmo.Add (newPickup);
 	}
 }
