@@ -50,7 +50,6 @@ public class ScoreUpdaterEditor : Editor {
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
         ScoreUpdater updater = (ScoreUpdater)target;
-        System.Random random = new System.Random();
 
         if (GUILayout.Button("Add: Enemy killed")) {
             updater.AddScore((int)ScoreUpdater.points.Enemy);

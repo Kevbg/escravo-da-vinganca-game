@@ -3,8 +3,9 @@ using System.Collections;
 
 // Script básico para sincronizar um objeto(camera, background, etc) com o movimento do player no eixo X
 public class TrackPlayerX : MonoBehaviour {
-    public float offset;
+    public float Offset;
     public static bool isTracking;
+    public bool ignoreOffset;
     private GameObject player;
     private GroundGenerator gg;
     private Vector3 newPosition;
@@ -31,7 +32,7 @@ public class TrackPlayerX : MonoBehaviour {
 	}
 
     void Track() {
-        newPosition = new Vector3(player.transform.position.x + offset, transform.position.y, transform.position.z);
+        newPosition = new Vector3(player.transform.position.x + Offset, transform.position.y, transform.position.z);
         transform.position = newPosition;
     }
 }

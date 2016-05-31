@@ -18,20 +18,22 @@ public class RunningState : IState {
 	
 	// Update is called once per frame
 	public void Update () {
-		xAxis = Input.GetAxisRaw ("Horizontal");
+        if (!MenuController.gamePaused) {
+            xAxis = Input.GetAxisRaw("Horizontal");
 
-		if (xAxis == 0) {
-			owner.currentState = new IdleState (owner);
-		}
+            if (xAxis == 0) {
+                owner.currentState = new IdleState(owner);
+            }
 
-		if (Input.GetAxisRaw("Jump") > 0) {
-			owner.currentState = new JumpingState (owner);
-		}
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                owner.currentState = new JumpingState(owner);
+            }
 
-		if (!owner.isGrounded) {
-			owner.currentState = new FallingState (owner);
-		}
+            if (!owner.isGrounded) {
+                owner.currentState = new FallingState(owner);
+            }
 
-		owner.move ();
+            owner.move();
+        }
 	}
 }

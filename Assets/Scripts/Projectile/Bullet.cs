@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour {
 
 	// Use this for initialization
 	public void Start () {
-		maxLifeTime = 0.5f;
+		maxLifeTime = 1f;
 		lifeTime = 0;
 	}
 	

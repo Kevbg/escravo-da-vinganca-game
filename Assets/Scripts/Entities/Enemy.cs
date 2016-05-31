@@ -10,6 +10,7 @@ public class Enemy : Entities {
     public bool isDead { get; private set; }
 	private static float xAxis;
     private SceneLoader sceneLoader;
+    private EnemySpawner spawner;
 
 	public GameObject enemyRadar;
 	public bool isFacingPlayer = false;
@@ -23,6 +24,7 @@ public class Enemy : Entities {
             maxHealth = 30;
         } else {
             maxHealth = Random.Range(3, 6);
+            spawner = GameObject.FindGameObjectWithTag("EnemySpawner").GetComponent<EnemySpawner>();
         }
 
         health = maxHealth;
@@ -68,7 +70,7 @@ public class Enemy : Entities {
             GetComponent<Rigidbody2D>().isKinematic = true;
             transform.position = new Vector3(transform.position.x, transform.position.y - 5f);
             transform.Rotate(0, 0, 90);
-            StartCoroutine(sceneLoader.LoadScene(6));
+            StartCoroutine(sceneLoader.LoadScene(7));
         } else {
             float chance = Random.Range(0f, 1f);
             if (chance > 0.8f) {
@@ -78,9 +80,13 @@ public class Enemy : Entities {
             }
 
             if (GameObject.FindGameObjectWithTag("Score") != null) {
-                GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreUpdater>().AddScore(10 + maxHealth);
+                int bonus = 0;
+                if (GetComponent<Shoot>().weaponType == 1) {
+                    bonus = 5;
+                }
+                GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreUpdater>().AddScore(10 + maxHealth + bonus);
             }
-            Destroy(this.gameObject);
+            spawner.DestroyEnemy(gameObject);
         }
 	}
 }

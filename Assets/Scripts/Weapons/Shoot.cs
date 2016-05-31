@@ -7,15 +7,24 @@ public class Shoot : MonoBehaviour {
 
 	protected int activeWeapon;
     private Weapons currentWeapon;
+    public int weaponType { get; private set; }
 
 	void Start () {
         if (tag == "Capataz") {
             this.addWeapon(1);
+            weaponType = 1;
         } else if (tag == "Player"){
             this.addWeapon(0);
             this.addWeapon(1);
         } else {
-            this.addWeapon(0);
+            float chance = Random.Range(0, 1f);
+            if (chance > 0.8f) {
+                this.addWeapon(1);
+                weaponType = 1;
+            } else {
+                this.addWeapon(0);
+                weaponType = 0;
+            }
         }
         this.changeWeapon(0);
     }

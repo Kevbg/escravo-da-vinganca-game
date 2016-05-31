@@ -2,6 +2,9 @@
 using System.Collections;
 
 public class Pistol : Weapons {
+    public AudioClip fire;
+    public AudioClip reloadSfx;
+    private AudioSource sfx;
 
 	void Start () {
 		fireRate = 0.2f;
@@ -12,6 +15,8 @@ public class Pistol : Weapons {
 		maxMagazine = 6;
 		ammo = 120;
 		maxAmmo = 120;
+
+        sfx = GameObject.FindGameObjectWithTag("SFX").GetComponent<AudioSource>();
     }
 	
 	void Update () {
@@ -23,6 +28,8 @@ public class Pistol : Weapons {
 			base.shoot ();
 			newBullet.GetComponent<Bullet> ().SetMovement (new LinearMovement ());
 			newBullet.GetComponent<Bullet> ().SetDemage (2);
+
+            sfx.PlayOneShot(fire);
 		} else if (magazine == 0) {
 			this.reload ();
 		} else {
@@ -31,10 +38,18 @@ public class Pistol : Weapons {
 	}
 
 	public override void reload() {
-		base.reload ();
-	}
+        if (magazine < maxMagazine) {
+            base.reload();
+            StartCoroutine(DelayedReloadSound());
+        }
+    }
 
-	public override void selectWeapon() {
+    public IEnumerator DelayedReloadSound() {
+        yield return new WaitForSeconds(0.1f);
+        sfx.PlayOneShot(reloadSfx);
+    }
+
+    public override void selectWeapon() {
 		base.selectWeapon ();
 	}
 

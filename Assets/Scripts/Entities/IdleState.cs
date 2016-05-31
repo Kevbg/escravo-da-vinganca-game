@@ -16,17 +16,19 @@ public class IdleState : IState {
 	
 	// Update is called once per frame
 	public void Update () {
-		if (Input.GetAxisRaw ("Horizontal") != 0) {
-			owner.currentState = new RunningState (owner);
-		}
+        if (!MenuController.gamePaused) {
+            if (Input.GetAxisRaw("Horizontal") != 0) {
+                owner.currentState = new RunningState(owner);
+            }
 
-		if (Input.GetAxisRaw("Jump") > 0) {
-			owner.currentState = new JumpingState (owner);
-		}
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                owner.currentState = new JumpingState(owner);
+            }
 
-		if (!owner.isGrounded) {
-			owner.currentState = new FallingState (owner);
-		}
+            if (!owner.isGrounded) {
+                owner.currentState = new FallingState(owner);
+            }
+        }
 
 	}
 }

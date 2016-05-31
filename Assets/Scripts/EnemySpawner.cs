@@ -26,6 +26,9 @@ public class EnemySpawner : MonoBehaviour {
             && enemies.Count() < maxEnemies) {
             SpawnEnemies(random.Next(0, 4));
         }
+        if (enemies.Count >= maxEnemies) {
+            print("Max n. of enemies reached");
+        }
     }
 
     void SpawnEnemies(int amount) {

@@ -19,13 +19,13 @@ public class GroundGenerator : MonoBehaviour {
     
 	void Update () {
         if (!HasBeenGenerated(groundWidth) && Input.GetAxisRaw("Horizontal") > 0) {
-            GenerateGround(3);
+            GenerateGround(4);
         }
 
         if (player.transform.position.x >= maxDistance && !unlimited && !triggerSpawned) {
             Instantiate(bossSceneTrigger, new Vector3(player.transform.position.x + groundWidth, 0),
                         Quaternion.identity);
-
+            print("Trigger spawned at: " + player.transform.position.x + groundWidth);
             triggerSpawned = true;
         }
     }
