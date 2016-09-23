@@ -12,11 +12,14 @@ public class GameControl : MonoBehaviour {
 
     public enum Scenes {
         menu,
-        cena1,
+        historia,
+        survival,
         poste,
-        mansao,
+        mansaoIntro,
+        mansaoLuta,
         mansaoFim,
-        languageSelection
+        languageSelection,
+        logo
     }
 
     // Variáveis globais (preferências)
@@ -34,6 +37,9 @@ public class GameControl : MonoBehaviour {
             scene = SceneManager.GetActiveScene();
             saveFilePath = Application.persistentDataPath + "/Preferences.dat";
             current.Load();
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
         } else if (current != this){
             Destroy(gameObject);
         }
@@ -43,7 +49,7 @@ public class GameControl : MonoBehaviour {
         current.Save();
     }
 
-    void OnLevelWasLoaded() {
+    void OnSceneLoaded(Scene s, LoadSceneMode mode) {
         scene = SceneManager.GetActiveScene();
     }
 
@@ -84,7 +90,7 @@ public class GameControl : MonoBehaviour {
             sfxVolume = 0.75f;
             musicVolume = 0.75f;
             scores = new List<KeyValuePair<string, int>>();
-            throw new FileNotFoundException("Could not load prefs file", saveFilePath);
+            //throw new FileNotFoundException("Could not load prefs file", saveFilePath);
         }
     }
 }

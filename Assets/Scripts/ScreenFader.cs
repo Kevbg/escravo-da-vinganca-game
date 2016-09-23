@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScreenFader : MonoBehaviour {
@@ -9,12 +10,15 @@ public class ScreenFader : MonoBehaviour {
         if (current == null) {
             DontDestroyOnLoad(gameObject);
             current = this;
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
         } else if (current != this) {
             Destroy(gameObject);
         }
     }
 
-    void OnLevelWasLoaded() {
+    void OnSceneLoaded(Scene s, LoadSceneMode mode) {
         // Anexa a câmera toda vez que uma nova cena é carregada, pois cada cena tem uma câmera diferente
         GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }

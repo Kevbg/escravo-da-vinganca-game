@@ -25,7 +25,7 @@ public class Weapons : MonoBehaviour {
 	}
 
 	public virtual void shoot() {
-        if (!MenuController.gamePaused) {
+        if (Time.timeScale > 0) {
             lastFire = Time.time;
             magazine -= 1;
 

@@ -9,9 +9,9 @@ using UnityEditor;
 public class CharacterDialogue : MonoBehaviour {
     public int startingLine;
     public int numOfLines;
-    public int nextScene;
+    public GameControl.Scenes nextScene;
     public int currentDialogueIndex { get; private set; }
-    private LanguageSwitcher ls;
+    private TextUpdater textUpdater;
     private SceneLoader sceneLoader;
     private Sprite joaqsHead;
     private Sprite capatazHead;
@@ -22,17 +22,16 @@ public class CharacterDialogue : MonoBehaviour {
     }
 
 	void Start () {
-        ls = GetComponentInParent<LanguageSwitcher>();
-        sceneLoader = GameObject.FindGameObjectWithTag("MenuPanel").GetComponent<SceneLoader>();
+        textUpdater = GetComponentInParent<TextUpdater>();
+        sceneLoader = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<SceneLoader>();
         joaqsHead = Resources.Load<Sprite>("Sprites/Cabeça Joaqs");
         capatazHead = Resources.Load<Sprite>("Sprites/Cabeça Capataz");
 
         SetDialogue(startingLine);
-        ls.SetDialogueText();
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Space) && !MenuController.gamePaused) {
+        if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale > 0) {
             if (currentDialogueIndex + 1 < numOfLines + startingLine) {
                 SetDialogue(currentDialogueIndex + 1);
             } else {
@@ -54,13 +53,15 @@ public class CharacterDialogue : MonoBehaviour {
 
     public string GetDialogue(int index, out string charName) {
         currentDialogueIndex = index;
-        return ls.FetchDialogue(currentDialogueIndex, out charName);
+        return textUpdater.FetchDialogue(index, out charName);
     }
 
     public void SetDialogue(int index) {
         string charName;
         Text dialogue = GameObject.FindGameObjectWithTag("Dialogue").GetComponent<Text>();
+        Text continueText = GameObject.FindGameObjectWithTag("ContinueText").GetComponent<Text>();
         dialogue.text = GetDialogue(index, out charName);
+        continueText.text = textUpdater.FetchItem(continueText.name);
 
         if (charName == characters.Joaqs.ToString()) {
             SetPortrait(joaqsHead);
@@ -69,6 +70,10 @@ public class CharacterDialogue : MonoBehaviour {
             SetPortrait(capatazHead);
             SetCharacterName(charName);
         }
+    }
+
+    public void UpdateDialogue() {
+        SetDialogue(currentDialogueIndex);
     }
 }
 

@@ -19,8 +19,7 @@ public class HotbarController : MonoBehaviour {
         foreach (char c in Input.inputString) {
             int key = (int)char.GetNumericValue(c);
 
-            //if (!MenuController.gamePaused && key >= 1 && key <= 3) {
-            if (!MenuController.gamePaused && key >= 1 && key <= 2) {
+            if (Time.timeScale > 0 && key >= 1 && key <= 2) {
                 MoveSelector(key - 1);
                 print("Active slot: " + activeSlot);
             }

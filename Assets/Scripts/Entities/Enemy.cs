@@ -18,7 +18,7 @@ public class Enemy : Entities {
 	void Start () {
 		base.onStart ();
 		moveSpeed = DefaultSpeed;
-        sceneLoader = GameObject.FindGameObjectWithTag("MenuPanel").GetComponent<SceneLoader>();
+        sceneLoader = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<SceneLoader>();
 
         if (tag == "Capataz") {
             maxHealth = 30;
@@ -70,7 +70,7 @@ public class Enemy : Entities {
             GetComponent<Rigidbody2D>().isKinematic = true;
             transform.position = new Vector3(transform.position.x, transform.position.y - 5f);
             transform.Rotate(0, 0, 90);
-            StartCoroutine(sceneLoader.LoadScene(7));
+            sceneLoader.BeginLoading(GameControl.Scenes.mansaoFim);
         } else {
             float chance = Random.Range(0f, 1f);
             if (chance > 0.8f) {

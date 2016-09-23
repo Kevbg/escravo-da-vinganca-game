@@ -10,7 +10,7 @@ public class Player : Entities {
     public const int MaxHealth = 12;
 	private static float xAxis;
     private Shoot shootComponent;
-    private MenuController menu;
+    private MenuScript menu;
     private HotbarController hotbar;
     private bool inputDisabled;
 
@@ -20,7 +20,7 @@ public class Player : Entities {
         health = MaxHealth;
 
 		currentState = new IdleState (this);
-        menu = GameObject.FindGameObjectWithTag("MenuPanel").GetComponent<MenuController>();
+        menu = GameObject.FindGameObjectWithTag("MenuCanvas").GetComponent<MenuScript>();
         hotbar = GameObject.FindGameObjectWithTag("Hotbar").GetComponent<HotbarController>();
         shootComponent = GetComponent<Shoot>();
 	}
@@ -29,7 +29,7 @@ public class Player : Entities {
 		base.onUpdate ();
 		vely = GetComponent<Rigidbody2D> ().velocity.y;
 
-        if (!inputDisabled && !MenuController.gamePaused) {
+        if (!inputDisabled && Time.timeScale > 0) {
             if (Input.GetAxisRaw("Fire1") > 0) {
                 shootComponent.shoot();
             }
@@ -90,8 +90,7 @@ public class Player : Entities {
             Physics2D.IgnoreCollision(bullet.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
         }
 
-        menu.Pause();
-        menu.EnableMenu(menu.gameOverMenu);
+        menu.GameOverPause();
     }
 
     void DisableEnemyAI() {

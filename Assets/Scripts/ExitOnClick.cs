@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class ExitOnClick : MonoBehaviour {
-    public float fadeDuration = 1.5f;
+    public float fadeDuration = 1f;
 
     // Inicia a corotina que fecha o jogo (OnClick wrapper)
     public void Exit() {

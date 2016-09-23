@@ -35,8 +35,8 @@
   },
 
   "howToPlayText": {
-    "english": "Your goal is to defeat Capataz, and to get to him, you will need to face every enemy that crosses your path.\n\n\nControls\nPause\\Menu: ESC\nWalk: A, D, Left Arrow, Right Arrow\nJump: SPACE\nShoot: (Left)CTRL\nSwitch Weapons: 1, 2\nReload Weapon: R",
-    "portuguese": "Seu objetivo é derrotar o Capataz, e para chegar até ele, terá de enfrentar todos os inimigos que cruzarem o seu caminho.\n\n\nControles\nPausa\\Menu: ESC\nAndar: A, D, Seta p/ esquerda, Seta p/ direita\nPular: ESPAÇO\nAtirar: CTRL (Esquerdo)\nTrocar de arma: 1, 2\nRecarregar Arma: R"
+    "english": "Your goal is to defeat Capataz, and to get to him, you will need to face every enemy that crosses your path.\n\n\nControls:\nPause/Menu: ESC\nWalk: A, D, Left Arrow, Right Arrow\nJump: SPACE\nShoot: (Left)CTRL\nSwitch Weapons: 1, 2\nReload Weapon: R",
+    "portuguese": "Seu objetivo é derrotar o Capataz, e para chegar até ele, terá de enfrentar todos os inimigos que cruzarem o seu caminho.\n\n\nControles:\nPausa/Menu: ESC\nAndar: A, D, Seta p/ esquerda, Seta p/ direita\nPular: ESPAÇO\nAtirar: CTRL (Esquerdo)\nTrocar de arma: 1, 2\nRecarregar Arma: R"
   },
 
   "highscoresButtonText": {
@@ -114,7 +114,7 @@
     "portuguese": "Texto de amostra"
   },
 
-  "pausedText": {
+  "pauseText": {
     "english": "Paused",
     "portuguese": "Pausa"
   },

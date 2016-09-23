@@ -12,7 +12,7 @@ public class JumpingState : IState {
 
 	// Use this for initialization
 	public void Start (Entities owner) {
-        if (!MenuController.gamePaused) {
+        if (Time.timeScale > 0) {
             this.owner = owner;
             owner.GetComponent<Rigidbody2D>().AddForce(owner.transform.up * 1200);
             Debug.Log("Jumping...");
@@ -21,7 +21,7 @@ public class JumpingState : IState {
 	
 	// Update is called once per frame
 	public void Update () {
-        if (!MenuController.gamePaused) {
+        if (Time.timeScale > 0) {
             xAxis = Input.GetAxisRaw("Horizontal");
             owner.move();
 

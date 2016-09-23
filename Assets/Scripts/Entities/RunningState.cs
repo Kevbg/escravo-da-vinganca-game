@@ -18,7 +18,7 @@ public class RunningState : IState {
 	
 	// Update is called once per frame
 	public void Update () {
-        if (!MenuController.gamePaused) {
+        if (Time.timeScale > 0) {
             xAxis = Input.GetAxisRaw("Horizontal");
 
             if (xAxis == 0) {

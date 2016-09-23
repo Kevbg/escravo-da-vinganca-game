@@ -16,7 +16,7 @@ public class IdleState : IState {
 	
 	// Update is called once per frame
 	public void Update () {
-        if (!MenuController.gamePaused) {
+        if (Time.timeScale > 0) {
             if (Input.GetAxisRaw("Horizontal") != 0) {
                 owner.currentState = new RunningState(owner);
             }
