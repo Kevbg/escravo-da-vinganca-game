@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -139,5 +140,12 @@ public class MenuScript : MonoBehaviour {
         foreach (Button b in menu.GetComponentsInChildren<Button>()) {
             b.GetComponent<EventTrigger>().enabled = true;
         }
+    }
+
+    public void SavePlayerScore() {
+        string name = GameObject.FindGameObjectWithTag("PlayerName").GetComponent<Text>().text;
+        int score = int.Parse(GameObject.FindGameObjectWithTag("Score").GetComponent<Text>().text);
+        GameControl.scores.Add(new KeyValuePair<string, int>(name, score));
+        GameControl.current.Save();
     }
 }
