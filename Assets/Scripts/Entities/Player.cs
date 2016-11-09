@@ -26,9 +26,6 @@ public class Player : Entities {
 	}
 
 	void Update () {
-		base.onUpdate ();
-		vely = GetComponent<Rigidbody2D> ().velocity.y;
-
         if (!inputDisabled && Time.timeScale > 0) {
             if (Input.GetAxisRaw("Fire1") > 0) {
                 shootComponent.shoot();
@@ -44,20 +41,26 @@ public class Player : Entities {
             }
 
             xAxis = Input.GetAxisRaw("Horizontal");
-            if (xAxis > 0 && this.transform.localScale.x < 0) {
-                Vector3 scale = this.transform.localScale;
-                scale.x *= -1;
-                this.transform.localScale = scale;
-            } else if (xAxis < 0 && this.transform.localScale.x > 0) {
-                Vector3 scale = this.transform.localScale;
-                scale.x *= -1;
-                this.transform.localScale = scale;
-            }
 
             hotbar.UpdateAmmoCount(shootComponent.CurrentWeapon().GetMagazine(),
                                        shootComponent.CurrentWeapon().GetAmmo());
         }
 	}
+
+    void FixedUpdate() {
+        base.onUpdate();
+        vely = GetComponent<Rigidbody2D>().velocity.y;
+
+        if (xAxis > 0 && this.transform.localScale.x < 0) {
+            Vector3 scale = this.transform.localScale;
+            scale.x *= -1;
+            this.transform.localScale = scale;
+        } else if (xAxis < 0 && this.transform.localScale.x > 0) {
+            Vector3 scale = this.transform.localScale;
+            scale.x *= -1;
+            this.transform.localScale = scale;
+        }
+    }
 
 	void OnCollisionStay2D (Collision2D col) {
 		if (col.gameObject.tag == "Ground") {
