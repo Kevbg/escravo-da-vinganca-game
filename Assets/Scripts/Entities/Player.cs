@@ -26,6 +26,8 @@ public class Player : Entities {
 	}
 
 	void Update () {
+        base.onUpdate();
+
         if (!inputDisabled && Time.timeScale > 0) {
             if (Input.GetAxisRaw("Fire1") > 0) {
                 shootComponent.shoot();
@@ -48,7 +50,6 @@ public class Player : Entities {
 	}
 
     void FixedUpdate() {
-        base.onUpdate();
         vely = GetComponent<Rigidbody2D>().velocity.y;
 
         if (xAxis > 0 && this.transform.localScale.x < 0) {
@@ -84,12 +85,15 @@ public class Player : Entities {
         DisableEnemyAI();
         isDead = true;
         inputDisabled = true;
-        invulnerableTime = 0;
-        invulnerable = false;
-        transform.position = new Vector3(transform.position.x, transform.position.y -5f);
+        //invulnerableTime = 0;
+        //invulnerable = false;
+        currentState = new IdleState(this);
+        transform.position = new Vector3(transform.position.x, transform.position.y -6.65f);
         transform.Rotate(0, 0, 90);
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Rigidbody2D>().angularVelocity = 0;
 
-        foreach(GameObject bullet in GameObject.FindGameObjectsWithTag("Fire")) {
+        foreach (GameObject bullet in GameObject.FindGameObjectsWithTag("Fire")) {
             Physics2D.IgnoreCollision(bullet.GetComponent<BoxCollider2D>(), GetComponent<BoxCollider2D>());
         }
 

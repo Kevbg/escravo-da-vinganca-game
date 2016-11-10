@@ -15,6 +15,7 @@ public class PlayerAnim : MonoBehaviour {
             animator.SetBool("idle", true);
             animator.SetBool("running", false);
             animator.SetBool("jumping", false);
+            animator.SetBool("falling", false);
         } else {
             if (player.currentState.ToString() == "IdleState") {
                 animator.SetBool("idle", true);
@@ -32,6 +33,12 @@ public class PlayerAnim : MonoBehaviour {
                 animator.SetBool("jumping", true);
             } else {
                 animator.SetBool("jumping", false);
+            }
+
+            if (player.currentState.ToString() == "FallingState") {
+                animator.SetBool("falling", true);
+            } else {
+                animator.SetBool("falling", false);
             }
         }
     }

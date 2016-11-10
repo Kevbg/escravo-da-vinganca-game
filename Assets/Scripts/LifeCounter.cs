@@ -33,12 +33,24 @@ public class LifeCounter : MonoBehaviour {
                 health = 0;
             }
             txt.text = health.ToString() + "%";
+
+            if (health <= 20) {
+                txt.color = new Color(1, 0.15f, 0.05f);
+            } else if (health <= 40) {
+                txt.color = new Color(0.9f, 0.6f, 0.3f);
+            }
         } else if (character == Character.Boss) {
             int health = (int)(boss.health / boss.maxHealth * 100);
             if (health < 0) {
                 health = 0;
             }
             txt.text = health.ToString() + "%";
+
+            if (health <= 20) {
+                txt.color = new Color(1, 0.15f, 0.05f);
+            } else if (health <= 40) {
+                txt.color = new Color(0.9f, 0.6f, 0.3f);
+            }
         }
     }
 }

@@ -73,9 +73,9 @@ public class Enemy : Entities {
             sceneLoader.BeginLoading(GameControl.Scenes.mansaoFim);
         } else {
             float chance = Random.Range(0f, 1f);
-            if (chance > 0.8f) {
+            if (chance > 0.5f && GetComponent<Shoot>().weaponType == 1) {
                 WeaponsController.weaponsController.CreatePickupAmmo(1, this.transform);
-            } else if (chance > 0.5f) {
+            } else if (chance > 0.33f && GetComponent<Shoot>().weaponType == 0) {
                 WeaponsController.weaponsController.CreatePickupAmmo(0, this.transform);
             }
 

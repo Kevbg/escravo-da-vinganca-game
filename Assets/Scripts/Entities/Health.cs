@@ -14,10 +14,12 @@ public class Health : MonoBehaviour {
 	}
 
 	public void takeDemage(int demage) {
-		Entities entity = this.gameObject.GetComponent<Entities> ();
+		Entities entity = gameObject.GetComponent<Entities> ();
 		if (!entity.invulnerable) {
 			entity.health -= demage;
-			entity.invulnerable = true;
+            entity.invulnerable = true;
+            StartCoroutine(entity.blink(12));
+			//entity.invulnerable = true;
 		}
 
 		if (entity.health <= 0) {

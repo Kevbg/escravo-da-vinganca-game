@@ -55,10 +55,10 @@ public class Pistol : Weapons {
 
 	public override void addAmmo() {
 		base.addAmmo ();
-		if (ammo + 12 > maxAmmo) {
+		if (ammo + maxMagazine > maxAmmo) {
 			ammo = maxAmmo;
 		} else {
-			ammo += 12;
+			ammo += maxMagazine;
 		}
 	}
 }
